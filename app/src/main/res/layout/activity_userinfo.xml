@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical"
+    tools:context="com.hhtxproject.piafriendscollege.OtherActivity.SettingActivity">
+
+    <RelativeLayout
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="头像"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.hhtxproject.piafriendscollege.Tools.CircleImageView
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_toLeftOf="@+id/right"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp" />
+        <ImageView
+            android:id="@+id/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/size_10dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp">
+        <TextView
+            android:text="昵称"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_toLeftOf="@+id/right2"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/right2"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp">
+        <TextView
+            android:text="性别"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_toLeftOf="@+id/right6"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/right6"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp">
+        <TextView
+            android:text="签名"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_toLeftOf="@+id/right3"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/right3"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp">
+        <TextView
+            android:text="手机"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_telephone"
+            android:layout_toLeftOf="@+id/right4"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/right4"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp">
+        <TextView
+            android:text="邮箱"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_toLeftOf="@+id/right5"
+            android:layout_margin="@dimen/size_10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/right5"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"
+            android:src="@drawable/testicon"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
+</LinearLayout>

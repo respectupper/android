@@ -1,0 +1,294 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hhtxproject.piafriendscollege.NavFragment.VoiceFragment">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_toolbar" android:id="@+id/mine_toolbar"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nested_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:background="#20000000"
+                    android:padding="20dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.hhtxproject.piafriendscollege.Tools.CircleImageView
+                        android:id="@+id/iv_mine_icon"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp" />
+                    <TextView
+                        android:id="@+id/tv_mine_username"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/mine_name_text_size"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/tv_mine_content"
+                        android:textSize="@dimen/mine_content_text_size"
+                        android:textColor="#FFFFFF"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:maxLines="2"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_blocktwo"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@color/color_text_30blank"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_text_white"
+                            android:text="影动"
+                            android:textSize="@dimen/size_text_16"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_mine_funs"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:textColor="@color/color_text_white"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_text_white"
+                            android:text="音符"
+                            android:textSize="@dimen/size_text_16"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_mine_coin"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:textColor="@color/color_text_white"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:textColor="@color/color_text_white"
+                            android:text="追光"
+                            android:textSize="@dimen/size_text_16"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_mine_follows"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:textColor="@color/color_text_white"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@color/color_text_40blank"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/message"
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/size_25dp"
+                            android:layout_height="@dimen/size_25dp" />
+                        <TextView
+                            android:text="@string/mine_message"
+                            android:textColor="@color/color_text_white"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/testicon"
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/size_25dp"
+                            android:layout_height="@dimen/size_25dp" />
+                        <TextView
+                            android:text="@string/mine_piashow"
+                            android:textColor="@color/color_text_white"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/testicon"
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/size_25dp"
+                            android:layout_height="@dimen/size_25dp" />
+                        <TextView
+                            android:text="@string/mine_collection"
+                            android:textColor="@color/color_text_white"
+                            android:textSize="@dimen/mine_other_text_size"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:padding="@dimen/size_15dp"
+                        android:background="@color/color_text_50blank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/testicon"
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/size_25dp"
+                                android:layout_height="@dimen/size_25dp" />
+                            <TextView
+                                android:layout_marginLeft="@dimen/size_15dp"
+                                android:layout_gravity="center"
+                                android:textSize="@dimen/mine_other_text_size"
+                                android:textColor="@color/color_text_white"
+                                android:text="纸条"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="@dimen/size_20dp"
+                            android:layout_height="@dimen/size_20dp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_marginTop="2dp"
+                        android:padding="@dimen/size_15dp"
+                        android:background="@color/color_text_50blank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/testicon"
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/size_25dp"
+                                android:layout_height="@dimen/size_25dp" />
+                            <TextView
+                                android:layout_marginLeft="@dimen/size_15dp"
+                                android:layout_gravity="center"
+                                android:textSize="@dimen/mine_other_text_size"
+                                android:textColor="@color/color_text_white"
+                                android:text="足迹"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="@dimen/size_20dp"
+                            android:layout_height="@dimen/size_20dp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_marginTop="2dp"
+                        android:padding="@dimen/size_15dp"
+                        android:background="@color/color_text_50blank"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:src="@drawable/testicon"
+                                android:layout_gravity="center"
+                                android:layout_width="@dimen/size_25dp"
+                                android:layout_height="@dimen/size_25dp" />
+                            <TextView
+                                android:layout_marginLeft="@dimen/size_15dp"
+                                android:layout_gravity="center"
+                                android:textSize="@dimen/mine_other_text_size"
+                                android:textColor="@color/color_text_white"
+                                android:text="缓存"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="@dimen/size_20dp"
+                            android:layout_height="@dimen/size_20dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

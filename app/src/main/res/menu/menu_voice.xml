@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Base.MainActivity">
+
+    <item
+        android:id="@+id/menu_voice_bt1"
+        android:icon="@drawable/testicon"
+        android:orderInCategory="100"
+        android:title="test1"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource"/>
+
+    <item
+        android:id="@+id/menu_voice_bt2"
+        android:icon="@drawable/testicon"
+        android:orderInCategory="100"
+        android:title="test2"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
+
+    <item
+        android:id="@+id/menu_voice_bt3"
+        android:icon="@drawable/testicon"
+        android:orderInCategory="100"
+        android:title="test1"
+        android:showAsAction="always"
+        tools:ignore="AppCompatResource" />
+
+</menu>

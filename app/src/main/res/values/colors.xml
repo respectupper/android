@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--主题色-->
+    <color name="color_main_theme">#C283E7</color>
+    <!--nav背景色-->
+    <color name="color_nav_bg">#F8F9F8</color>
+    <!--title字体颜色-->
+    <color name="color_title_text">#FFFFFF</color>
+
+    <color name="color_text_00white">#00FFFFFF</color>
+    <color name="color_text_10white">#10FFFFFF</color>
+    <color name="color_text_20white">#20FFFFFF</color>
+    <color name="color_text_30white">#30FFFFFF</color>
+    <color name="color_text_40white">#40FFFFFF</color>
+    <color name="color_text_50white">#50FFFFFF</color>
+    <color name="color_text_60white">#60FFFFFF</color>
+    <color name="color_text_70white">#70FFFFFF</color>
+    <color name="color_text_80white">#80FFFFFF</color>
+    <color name="color_text_90white">#90FFFFFF</color>
+    <color name="color_text_white">#FFFFFF</color>
+
+    <color name="color_text_00blank">#00000000</color>
+    <color name="color_text_10blank">#10000000</color>
+    <color name="color_text_20blank">#20000000</color>
+    <color name="color_text_30blank">#30000000</color>
+    <color name="color_text_40blank">#40000000</color>
+    <color name="color_text_50blank">#50000000</color>
+    <color name="color_text_60blank">#60000000</color>
+    <color name="color_text_70blank">#70000000</color>
+    <color name="color_text_80blank">#80000000</color>
+    <color name="color_text_90blank">#90000000</color>
+    <color name="color_text_blank">#000000</color>
+</resources>

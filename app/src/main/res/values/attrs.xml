@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_title_text">20sp</dimen>
+
+    <dimen name="size_text_12">12sp</dimen>
+    <dimen name="size_text_13">13sp</dimen>
+    <dimen name="size_text_14">14sp</dimen>
+    <dimen name="size_text_15">15sp</dimen>
+    <dimen name="size_text_16">16sp</dimen>
+    <dimen name="size_text_17">17sp</dimen>
+    <dimen name="size_text_18">18sp</dimen>
+    <dimen name="size_text_19">19sp</dimen>
+    <dimen name="size_text_20">20sp</dimen>
+
+    <dimen name="size_10dp">10dp</dimen>
+    <dimen name="size_15dp">15dp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
+    <dimen name="size_25dp">25dp</dimen>
+    <dimen name="size_30dp">30dp</dimen>
+    <dimen name="size_35dp">35dp</dimen>
+    <dimen name="size_40dp">40dp</dimen>
+    <dimen name="size_45dp">45dp</dimen>
+    <dimen name="size_50dp">50dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_80dp">80dp</dimen>
+    <dimen name="size_100dp">100dp</dimen>
+    <dimen name="size_150dp">150dp</dimen>
+
+    <!--圆角-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <!--个人界面字体大小-->
+    <dimen name="mine_name_text_size">15sp</dimen>
+    <dimen name="mine_content_text_size">13sp</dimen>
+    <dimen name="mine_title_text_size">16sp</dimen>
+    <dimen name="mine_other_text_size">14sp</dimen>
+</resources>

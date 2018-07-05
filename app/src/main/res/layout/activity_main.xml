@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hhtxproject.piafriendscollege.Base.MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/main_fragment"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="InefficientWeight">
+        </FrameLayout>
+        <com.hhtxproject.piafriendscollege.Tools.BottomBar
+            android:background="@color/color_nav_bg"
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60dp"
+        android:layout_alignParentBottom="true">
+        <com.rance.library.SectorMenuButton
+            android:id="@+id/bottom_sector_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:aebAnimDurationMillis="175"
+            app:aebBlurBackground="true"
+            app:aebBlurRadius="10"
+            app:aebButtonElevation="0dp"
+            app:aebButtonGapDp="60dp"
+            app:aebEndAngleDegree="135"
+            app:aebIsSelectionMode="false"
+            app:aebMainButtonRotateAnimDurationMillis="300"
+            app:aebMainButtonRotateDegree="0"
+            app:aebMainButtonSizeDp="50dp"
+            app:aebRippleEffect="true"
+            app:aebStartAngleDegree="45"
+            app:aebSubButtonSizeDp="50dp" />
+    </RelativeLayout>
+</RelativeLayout
+   >
