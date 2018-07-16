@@ -12,7 +12,7 @@ import com.loopj.android.http.SyncHttpClient;
 
 public class HttpPost {
     // 服务器地址
-    private static String SERVER = "http://192.168.0.31:8080";
+    private static String SERVER = "http://192.168.0.41:8080";
     // 项目地址
     private static String PROJECT = "/PiafriendsCollege/";
 
