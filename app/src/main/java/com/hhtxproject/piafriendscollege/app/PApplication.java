@@ -10,6 +10,10 @@ import org.json.JSONObject;
  * Created by Respectupper on 2018/4/23.
  */
 
+/**
+ * power by android
+ */
+
 public class PApplication extends Application {
     private JSONObject jsonData = null;
     private String telephone = "";
