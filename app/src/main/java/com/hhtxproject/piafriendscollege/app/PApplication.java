@@ -9,6 +9,7 @@ import org.json.JSONObject;
 /**
  * Created by Respectupper on 2018/4/23.
  */
+//你好
 
 public class PApplication extends Application {
     private JSONObject jsonData = null;
