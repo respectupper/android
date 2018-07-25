@@ -10,6 +10,9 @@
     <!--title字体颜色-->
     <color name="color_title_text">#FFFFFF</color>
 
+    <!--滚动条-->
+    <color name="dddddd">#9E5DB1</color>
+
     <color name="color_text_00white">#00FFFFFF</color>
     <color name="color_text_10white">#10FFFFFF</color>
     <color name="color_text_20white">#20FFFFFF</color>

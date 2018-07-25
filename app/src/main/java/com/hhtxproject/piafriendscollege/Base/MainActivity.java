@@ -16,6 +16,7 @@ import com.hhtxproject.piafriendscollege.Login.service.CheckLogin;
 import com.hhtxproject.piafriendscollege.NavFragment.FindFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.GoFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.MineFragment;
+import com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom.ModeRoomActivity;
 import com.hhtxproject.piafriendscollege.NavFragment.ScriptFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.VoiceFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.BaseWriteActivity;
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 2:
+                        Intent intent1 = new Intent(MainActivity.this, ModeRoomActivity.class);
+                        startActivity(intent1);
                         break;
                     default:
                         break;
