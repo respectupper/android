@@ -9,11 +9,15 @@ import org.json.JSONObject;
 /**
  * Created by Respectupper on 2018/4/23.
  */
+//你好
 
 /**
  * power by android
  */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b9d9cefe9ea97e227c70a0b9c3c05b32dfd0947
 public class PApplication extends Application {
     private JSONObject jsonData = null;
     private String telephone = "";
