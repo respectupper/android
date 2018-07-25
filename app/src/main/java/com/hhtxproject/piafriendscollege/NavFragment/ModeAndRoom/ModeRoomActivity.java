@@ -14,9 +14,6 @@ import android.view.WindowManager;
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom.fragment.SelectionPatternFragment;
-import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.ContentFragment;
-import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.PeopleFragment;
-import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.SimpleFragment;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 import com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide;
@@ -28,6 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.functions.Action1;
 
+/**
+ * 你好
+ */
 public class ModeRoomActivity extends AppCompatActivity {
 
     @BindView(R.id.viewpager)
@@ -35,7 +35,6 @@ public class ModeRoomActivity extends AppCompatActivity {
 
     private List<Fragment> fragments;
     private ViewPagerAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
