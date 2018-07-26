@@ -11,6 +11,9 @@ import org.json.JSONObject;
  */
 //你好
 
+/**
+ * power by android
+ */
 public class PApplication extends Application {
     private JSONObject jsonData = null;
     private String telephone = "";
