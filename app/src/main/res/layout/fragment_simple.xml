@@ -2,99 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/writebg"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.SimpleFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/layout_toolbar" android:id="@+id/toolbar"/>
-        <LinearLayout
-            android:id="@+id/parent_view"
-            android:orientation="vertical"
-            android:padding="@dimen/size_10dp"
+        <ImageView
+            android:layout_margin="20dp"
+            android:src="@mipmap/xiejuben"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:background="@mipmap/addimage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="#FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="剧本名称:"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/name"
-                    android:background="@null"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="剧本类型:"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/aclass"
-                    android:background="@null"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="剧本人数:"
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:entries="@array/spinner_people_count"
-                    android:dropDownWidth="match_parent"
-                    android:popupBackground="#F2F2F2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </Spinner>
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="剧本标题："
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/titles"
-                    android:background="@null"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="剧本介绍："
-                    android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/introduce"
-                    android:background="@null"
-                    android:minLines="4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                fresco:viewAspectRatio="2.5"/>
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>
