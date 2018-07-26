@@ -13,6 +13,7 @@ import android.view.WindowManager;
 
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
+import com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom.fragment.RoomFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom.fragment.SelectionPatternFragment;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
@@ -40,7 +41,7 @@ public class ModeRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_room);
         ButterKnife.bind(this);
-        fullScreen(ModeRoomActivity.this);
+//        fullScreen(ModeRoomActivity.this);
         setInitViewpager();
         getRxBus();
     }
@@ -48,6 +49,7 @@ public class ModeRoomActivity extends AppCompatActivity {
     private void setInitViewpager() {
         fragments = new ArrayList<>();
         fragments.add(SelectionPatternFragment.newInstance());
+        fragments.add(RoomFragment.newInstance());
         FragmentManager manager = getSupportFragmentManager();
         adapter = new ViewPagerAdapter(manager, fragments);
         viewpager.setAdapter(adapter);
@@ -64,7 +66,7 @@ public class ModeRoomActivity extends AppCompatActivity {
                         viewpager.setCurrentItem(0);
                         break;
                     case 1:
-                        viewpager.setCurrentItem(0);
+                        viewpager.setCurrentItem(1);
                         break;
                     case 2:
                         viewpager.setCurrentItem(0);
