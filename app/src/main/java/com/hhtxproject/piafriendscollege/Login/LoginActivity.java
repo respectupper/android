@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                         //登录检测加跳转
                         new LoginPostThread(LoginActivity.this, telephone, password).start();
                     }
-                }else {
-
                 }
             }
         });
