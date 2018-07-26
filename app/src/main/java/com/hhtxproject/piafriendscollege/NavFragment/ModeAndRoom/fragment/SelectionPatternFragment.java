@@ -14,8 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.ModeRecycAdapter;
+import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Listener.OnItemClickListener;
 import com.hhtxproject.piafriendscollege.R;
+import com.hhtxproject.piafriendscollege.Rx.RxBus;
 import com.hhtxproject.piafriendscollege.Tools.MySnapHelper;
 import com.hhtxproject.piafriendscollege.Tools.SpaceItemDecoration;
 
@@ -96,6 +98,7 @@ public class SelectionPatternFragment extends Fragment {
                 switch (position){
                     case 0:
                         //单人模式
+                        RxBus.getDefault().post(new JumpEvent(1));
                         break;
                     case 1:
                         //双人模式
