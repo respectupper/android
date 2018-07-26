@@ -22,9 +22,10 @@
         </activity>
         <activity android:name=".OtherActivity.SettingActivity" />
         <activity android:name=".OtherActivity.UserinfoActivity" />
-        <activity android:name=".Login.LoginActivity"></activity>
-        <activity android:name=".NavFragment.WriteScript.BaseWriteActivity"></activity>
-        <activity android:name=".NavFragment.ModeAndRoom.ModeRoomActivity"></activity>
+        <activity android:name=".Login.LoginActivity" />
+        <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ModeRoomActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ModeActivity"></activity>
     </application>
 
 </manifest>

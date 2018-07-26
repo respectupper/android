@@ -42,6 +42,8 @@ public class ModeRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mode_room);
         ButterKnife.bind(this);
 //        fullScreen(ModeRoomActivity.this);
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setInitViewpager();
         getRxBus();
     }
