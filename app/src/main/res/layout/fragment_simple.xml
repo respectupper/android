@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content" />
                 <EditText
                     android:hint="填写名称"
+                    android:textColorHint="#FFFFFF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -61,11 +62,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <Spinner
+                    android:id="@+id/spinner"
+                    android:entries="@array/spinner_people_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                 </Spinner>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="简介(100字)"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:textColorHint="#FFFFFF"
+                android:hint="填写作品简介"
+                android:textColor="#FFFFFF"
+                android:maxLength="100"
+                android:minLines="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
