@@ -72,8 +72,12 @@ public class MineFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what == 200){
-                setViewData(msg.obj.toString());
+            switch (msg.what){
+                case 200:
+                    setViewData(msg.obj.toString());
+                    break;
+                default:
+                    break;
             }
         }
     };
@@ -167,10 +171,10 @@ public class MineFragment extends Fragment {
                 public void run() {
                     RequestParams params = new RequestParams();
                     params.add("pia_telephone",pia.getTelephone());
+                    Log.i("pia.getTelephone()", pia.getTelephone());
                     new LoadData(handler,"getUser_pia",params).getData().sendToTarget();
                 }
             }).start();
-        }else {
             llBlocktwo.setVisibility(View.VISIBLE);
         }
     }
@@ -227,7 +231,7 @@ public class MineFragment extends Fragment {
     private void setViewData(String msg){
         if ("FAILED".equals(msg)){
             Toast.makeText(getContext(),"登录失败",Toast.LENGTH_SHORT).show();
-        } else if(!"FAILED".equals(msg)){
+        } else{
             PiaUser user = new GetMineData(msg,pia.getTelephone()).getUser();
             tvMineUsername.setText(user.getUsername());
             tvMineContent.setText(user.getText());
@@ -238,8 +242,6 @@ public class MineFragment extends Fragment {
                     .load(user.getAvatar())
                     .thumbnail(0.6f)
                     .into(ivMineIcon);
-        } else {
-            Log.i("error", "error"+msg.toString());
         }
     }
 }
