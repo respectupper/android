@@ -38,26 +38,10 @@ public class SimpleFragment extends Fragment {
     @BindView(R.id.spinner)
     Spinner spinner;
     Unbinder unbinder;
-    @BindView(R.id.name)
-    EditText name;
-    @BindView(R.id.aclass)
-    EditText aclass;
-    @BindView(R.id.parent_view)
-    LinearLayout parentView;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
     @BindView(R.id.toolbar_title_right)
     TextView toolbarTitleRight;
-    @BindView(R.id.titles)
-    EditText titles;
-    @BindView(R.id.introduce)
-    EditText introduce;
-
-    private String aname;
-    private String aclasss;
-    private int count;
-    private String atitles;
-    private String aintroduce;
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -77,8 +61,6 @@ public class SimpleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_simple, container, false);
         unbinder = ButterKnife.bind(this, view);
-        setSpinner();
-        setEditTextListener();
         setToolber();
         setJump();
         return view;
@@ -100,109 +82,6 @@ public class SimpleFragment extends Fragment {
         unbinder.unbind();
     }
 
-    private void setSpinner() {
-        spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
-    }
-
-    class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
-
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            count = i + 1;
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    }
-
-    private void setEditTextListener() {
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                aname = charSequence.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        aclass.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                aclasss = charSequence.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        parentView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (null != getActivity().getCurrentFocus()) {
-                    /**
-                     * 点击空白位置 隐藏软键盘
-                     */
-                    InputMethodManager mInputMethodManager = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
-                    return mInputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                }
-                return false;
-            }
-        });
-
-        titles.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                atitles = charSequence.toString();
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        introduce.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                aintroduce = charSequence.toString();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-    }
-
     private void setToolber(){
         toolbarTitle.setText("返回");
         toolbarTitleRight.setText("下一步");
@@ -221,24 +100,19 @@ public class SimpleFragment extends Fragment {
         toolbarTitleRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(aname)){
-                    Toast.makeText(getContext(),"剧本名不能为空",Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(aclasss)){
-                    Toast.makeText(getContext(),"剧本种类不能为空",Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(atitles)){
-                    Toast.makeText(getContext(),"剧本标题不能为空",Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(aintroduce)){
-                    Toast.makeText(getContext(),"剧本简介不能为空",Toast.LENGTH_SHORT).show();
-                }else {
-                    RxBus.getDefault().post(new JumpEvent(0));
-                    SimpleDataEvent event = new SimpleDataEvent();
-                    event.setName(aname);
-                    event.setAclass(aclasss);
-                    event.setNumber(count);
-                    event.setTitle(atitles);
-                    event.setIntroduce(aintroduce);
-                    RxBus.getDefault().post(event);
-                }
+//                if (TextUtils.isEmpty(aname)){
+//                    Toast.makeText(getContext(),"剧本名不能为空",Toast.LENGTH_SHORT).show();
+//                }else if (TextUtils.isEmpty(aclasss)){
+//                    Toast.makeText(getContext(),"剧本种类不能为空",Toast.LENGTH_SHORT).show();
+//                }else if (TextUtils.isEmpty(atitles)){
+//                    Toast.makeText(getContext(),"剧本标题不能为空",Toast.LENGTH_SHORT).show();
+//                }else if (TextUtils.isEmpty(aintroduce)){
+//                    Toast.makeText(getContext(),"剧本简介不能为空",Toast.LENGTH_SHORT).show();
+//                }else {
+//                    RxBus.getDefault().post(new JumpEvent(0));
+//                    SimpleDataEvent event = new SimpleDataEvent();
+//                    RxBus.getDefault().post(event);
+//                }
             }
         });
     }
