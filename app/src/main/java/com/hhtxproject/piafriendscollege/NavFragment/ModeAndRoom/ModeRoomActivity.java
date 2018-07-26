@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 import rx.functions.Action1;
 
 /**
- * 你好
+ * 你好lalalalalaalla
  */
 public class ModeRoomActivity extends AppCompatActivity {
 
