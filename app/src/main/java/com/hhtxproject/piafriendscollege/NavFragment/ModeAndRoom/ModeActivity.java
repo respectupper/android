@@ -20,17 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.ModeRecycAdapter;
-import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Listener.OnItemClickListener;
 import com.hhtxproject.piafriendscollege.R;
-import com.hhtxproject.piafriendscollege.Rx.RxBus;
 import com.hhtxproject.piafriendscollege.Tools.MySnapHelper;
 import com.hhtxproject.piafriendscollege.Tools.SpaceItemDecoration;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom.fragment.SelectionPatternFragment.dip2px;
 
 public class ModeActivity extends AppCompatActivity {
 
@@ -48,10 +45,10 @@ public class ModeActivity extends AppCompatActivity {
     RelativeLayout relat2;
     @BindView(R.id.relat3)
     RelativeLayout relat3;
-    @BindView(R.id.relat4)
-    RelativeLayout relat4;
-    @BindView(R.id.relat5)
-    RelativeLayout relat5;
+//    @BindView(R.id.relat4)
+//    RelativeLayout relat4;
+//    @BindView(R.id.relat5)
+//    RelativeLayout relat5;
     @BindView(R.id.ceshi)
     LinearLayout ceshi;
 
@@ -93,7 +90,7 @@ public class ModeActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         //单人模式
-                        startActivity(new Intent(ModeActivity.this,ModeRoomActivity.class));
+//                        startActivity(new Intent(ModeActivity.this,ModeRoomActivity.class));
                         break;
                     case 1:
                         //双人模式
@@ -117,6 +114,7 @@ public class ModeActivity extends AppCompatActivity {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 int firstItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+//                int lastItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
 
                 if (firstItemPosition == 1) {
                     relat1.setVisibility(View.VISIBLE);
@@ -132,26 +130,27 @@ public class ModeActivity extends AppCompatActivity {
 //                        relat4.setVisibility(View.INVISIBLE);
 //                        relat5.setVisibility(View.INVISIBLE);
 //                        relat6.setVisibility(View.INVISIBLE);
-                } else if (firstItemPosition == 3) {
-//                        relat1.setVisibility(View.INVISIBLE);
-                    relat2.setVisibility(View.INVISIBLE);
-                    relat3.setVisibility(View.VISIBLE);
-                    relat4.setVisibility(View.INVISIBLE);
-//                        relat5.setVisibility(View.INVISIBLE);
-//                        relat6.setVisibility(View.INVISIBLE);
-                } else if (firstItemPosition == 4) {
-//                        relat1.setVisibility(View.INVISIBLE);
-//                        relat2.setVisibility(View.INVISIBLE);
-                    relat3.setVisibility(View.INVISIBLE);
-                    relat4.setVisibility(View.VISIBLE);
-                    relat5.setVisibility(View.INVISIBLE);
-//                        relat6.setVisibility(View.INVISIBLE);
+//                } else if (firstItemPosition == 3) {
+////                        relat1.setVisibility(View.INVISIBLE);
+//                    relat2.setVisibility(View.INVISIBLE);
+//                    relat3.setVisibility(View.VISIBLE);
+//                    relat4.setVisibility(View.INVISIBLE);
+////                        relat5.setVisibility(View.INVISIBLE);
+////                        relat6.setVisibility(View.INVISIBLE);
+//                } else if (firstItemPosition == 4) {
+////                        relat1.setVisibility(View.INVISIBLE);
+////                        relat2.setVisibility(View.INVISIBLE);
+//                    relat3.setVisibility(View.INVISIBLE);
+//                    relat4.setVisibility(View.VISIBLE);
+//                    relat5.setVisibility(View.INVISIBLE);
+////                        relat6.setVisibility(View.INVISIBLE);
                 } else {
                     Log.i("滚动条：", "未能滚动");
                 }
-                if (linearLayoutManager.findFirstVisibleItemPosition() == 3) {
-                    relat4.setVisibility(View.INVISIBLE);
-                    relat5.setVisibility(View.VISIBLE);
+//              linearLayoutManager.findFirstVisibleItemPosition() == 总个数-2
+                if (linearLayoutManager.findFirstVisibleItemPosition() == 1) {
+                    relat2.setVisibility(View.INVISIBLE);
+                    relat3.setVisibility(View.VISIBLE);
                 }
 
             }

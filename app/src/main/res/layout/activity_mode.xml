@@ -76,20 +76,20 @@
                     android:background="@color/dddddd"
                     android:visibility="invisible"
                     android:id="@+id/relat3"/>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:background="@color/dddddd"
-                    android:visibility="invisible"
-                    android:id="@+id/relat4"/>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:background="@color/dddddd"
-                    android:visibility="invisible"
-                    android:id="@+id/relat5"/>
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/dddddd"-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:id="@+id/relat4"/>-->
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/dddddd"-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:id="@+id/relat5"/>-->
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

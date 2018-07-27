@@ -24,7 +24,6 @@
         <activity android:name=".OtherActivity.UserinfoActivity" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
-        <activity android:name=".NavFragment.ModeAndRoom.ModeRoomActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ModeActivity"></activity>
     </application>
 
