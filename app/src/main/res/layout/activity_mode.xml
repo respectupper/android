@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@mipmap/mode_back_img"
-        android:fitsSystemWindows="true"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/mode_back_img">
     <LinearLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -15,14 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="150dp">
             <ImageButton
+                android:id="@+id/mode_return"
                 android:layout_margin="5dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@mipmap/mode_return"/>
             <ImageView
                 android:id="@+id/img1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
                 android:src="@mipmap/mode_kaipia"
                 android:layout_alignParentRight="true"/>
             <ImageView
@@ -38,22 +38,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/cesshi2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:id="@+id/cesshi2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:descendantFocusability="blocksDescendants">
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/mRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    </android.support.v7.widget.RecyclerView>
-                </LinearLayout>
-            </ScrollView>
+                android:descendantFocusability="blocksDescendants">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="240dp"
                 android:layout_height="5dp"
@@ -81,21 +76,21 @@
                     android:background="@color/dddddd"
                     android:visibility="invisible"
                     android:id="@+id/relat3"/>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:background="@color/dddddd"
-                    android:visibility="invisible"
-                    android:id="@+id/relat4"/>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:background="@color/dddddd"
-                    android:visibility="invisible"
-                    android:id="@+id/relat5"/>
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/dddddd"-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:id="@+id/relat4"/>-->
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/dddddd"-->
+                    <!--android:visibility="invisible"-->
+                    <!--android:id="@+id/relat5"/>-->
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

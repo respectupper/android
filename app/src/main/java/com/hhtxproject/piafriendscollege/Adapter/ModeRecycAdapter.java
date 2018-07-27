@@ -2,7 +2,6 @@ package com.hhtxproject.piafriendscollege.Adapter;
 
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +22,7 @@ public class ModeRecycAdapter extends RecyclerView.Adapter<ModeRecycAdapter.View
     }
 
 
-    private int [] inage = {R.mipmap.danren_mode,R.mipmap.danren_mode,R.mipmap.danren_mode,R.mipmap.danren_mode,R.mipmap.danren_mode};
+    private int [] inage = {R.mipmap.danren_mode,R.mipmap.suiji_mode,R.mipmap.qidai_mode};
     protected Context mContext;
 
     class ViewHolder extends RecyclerView.ViewHolder {
