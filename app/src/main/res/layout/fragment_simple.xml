@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@mipmap/writebg"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.SimpleFragment">
 
@@ -25,16 +26,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageButton
-                    android:id="@+id/addImg"
                     android:background="@drawable/testicon"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/image"
                     android:layout_marginBottom="7dp"
                     android:layout_marginTop="7dp"
+                    fresco:viewAspectRatio="2.5"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
@@ -68,16 +69,17 @@
                     android:layout_weight="1"
                     android:id="@+id/name"
                     android:hint="填写名称"
+                    android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <Spinner
+                    android:scrollbars="none"
                     android:layout_weight="1"
                     android:id="@+id/spinner"
                     android:entries="@array/spinner_people_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                 </Spinner>
             </LinearLayout>
             <LinearLayout

@@ -1,30 +1,29 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 
-import android.content.ContentResolver;
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
-import com.bumptech.glide.request.target.Target;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hhtxproject.piafriendscollege.R;
-
-import java.io.FileNotFoundException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +38,7 @@ public class SimpleFragment extends Fragment {
 
     Unbinder unbinder;
     @BindView(R.id.image)
-    ImageView image;
+    SimpleDraweeView image;
     @BindView(R.id.spinner)
     Spinner spinner;
     @BindView(R.id.name)
@@ -50,8 +49,6 @@ public class SimpleFragment extends Fragment {
     Button last;
     @BindView(R.id.next)
     Button next;
-    @BindView(R.id.addImg)
-    ImageButton addImg;
 
     private static final int IMAGE_REQUEST_CODE = 0;
 
@@ -71,9 +68,13 @@ public class SimpleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Fresco.initialize(getContext());
         View view = inflater.inflate(R.layout.fragment_simple, container, false);
         unbinder = ButterKnife.bind(this, view);
+        requestReadExternalPermission();
         setImage();
+        setSpinner();
+        setHint();
         return view;
     }
 
@@ -93,13 +94,25 @@ public class SimpleFragment extends Fragment {
         unbinder.unbind();
     }
 
+    private void setHint(){
+        SpannableString nameHint = new SpannableString("填写名称");//定义hint的值
+        AbsoluteSizeSpan nameAss = new AbsoluteSizeSpan(15,true);//设置字体大小 true表示单位是sp
+        nameHint.setSpan(nameAss, 0, nameHint.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        name.setHint(nameHint);
+
+        SpannableString introduceHint = new SpannableString("填写作品简介");//定义hint的值
+        AbsoluteSizeSpan introduceAss = new AbsoluteSizeSpan(15,true);//设置字体大小 true表示单位是sp
+        introduceHint.setSpan(introduceAss, 0, introduceHint.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        introduction.setHint(introduceHint);
+    }
+
     private void setImage() {
-        addImg.setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(
                         Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, IMAGE_REQUEST_CODE);
             }
         });
@@ -115,15 +128,7 @@ public class SimpleFragment extends Fragment {
                 if (resultCode == RESULT_OK) {//resultcode是setResult里面设置的code值
                     try {
                         Uri selectedImage = data.getData(); //获取系统返回的照片的Uri
-                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                        Cursor cursor = getActivity().getContentResolver().query(selectedImage,
-                                filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
-                        cursor.moveToFirst();
-                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                        String path = cursor.getString(columnIndex);  //获取照片路径
-                        cursor.close();
-                        Bitmap bitmap = BitmapFactory.decodeFile(path);
-                        image.setImageBitmap(bitmap);
+                        image.setImageURI(selectedImage);
                     } catch (Exception e) {
                         // TODO Auto-generatedcatch block
                         e.printStackTrace();
@@ -155,6 +160,43 @@ public class SimpleFragment extends Fragment {
     }
 
     private void setSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.spinner_people_count, R.layout.my_spinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
+    }
+
+    @SuppressLint("NewApi")
+    private void requestReadExternalPermission() {
+        if (getContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                // 0 是自己定义的请求coude
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            }
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 0: {
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+
+                }
+                return;
+            }
+            default:
+                break;
+
+        }
     }
 }
