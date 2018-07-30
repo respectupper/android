@@ -90,7 +90,7 @@ public class ModeActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         //单人模式
-//                        startActivity(new Intent(ModeActivity.this,ModeRoomActivity.class));
+                        startActivity(new Intent(ModeActivity.this,ChoiceScriptActivity.class));
                         break;
                     case 1:
                         //双人模式

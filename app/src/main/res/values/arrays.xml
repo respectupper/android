@@ -7,6 +7,14 @@
         <item>四人</item>
         <item>五人</item>
     </string-array>
+    <string-array name="spinner_choice_script">
+        <item>人数</item>
+        <item>单人</item>
+        <item>双人</item>
+        <item>三人</item>
+        <item>四人</item>
+        <item>五人</item>
+    </string-array>
     <string-array name="query_suggestions">
         <item>re:从零开始的异世界生活</item>
         <item>守望先锋</item>
