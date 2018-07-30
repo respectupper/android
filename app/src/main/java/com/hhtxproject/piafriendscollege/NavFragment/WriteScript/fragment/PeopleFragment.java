@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.hhtxproject.piafriendscollege.Entity.event.SelectEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
+import com.hhtxproject.piafriendscollege.Tools.DialogExit;
 
 import java.util.ArrayList;
 import java.util.List;
