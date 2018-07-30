@@ -5,6 +5,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,7 +13,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +26,9 @@ import android.widget.Spinner;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.R;
+import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +56,8 @@ public class SimpleFragment extends Fragment {
     Button next;
 
     private static final int IMAGE_REQUEST_CODE = 0;
+    private Uri selectedImage;
+    private String image_path = "null";
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -75,6 +82,7 @@ public class SimpleFragment extends Fragment {
         setImage();
         setSpinner();
         setHint();
+        setJump();
         return view;
     }
 
@@ -127,7 +135,13 @@ public class SimpleFragment extends Fragment {
             case IMAGE_REQUEST_CODE://这里的requestCode是我自己设置的，就是确定返回到那个Activity的标志
                 if (resultCode == RESULT_OK) {//resultcode是setResult里面设置的code值
                     try {
-                        Uri selectedImage = data.getData(); //获取系统返回的照片的Uri
+                        selectedImage = data.getData(); //获取系统返回的照片的Uri
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                                filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        image_path = cursor.getString(columnIndex);
                         image.setImageURI(selectedImage);
                     } catch (Exception e) {
                         // TODO Auto-generatedcatch block
@@ -142,19 +156,21 @@ public class SimpleFragment extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (TextUtils.isEmpty(name.getText())){
-//                    Toast.makeText(getContext(),"剧本名不能为空", Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(aclasss)){
-//                    Toast.makeText(getContext(),"剧本种类不能为空",Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(atitles)){
-//                    Toast.makeText(getContext(),"剧本标题不能为空",Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(aintroduce)){
-//                    Toast.makeText(getContext(),"剧本简介不能为空",Toast.LENGTH_SHORT).show();
-//                }else {
-//                    RxBus.getDefault().post(new JumpEvent(0));
-//                    SimpleDataEvent event = new SimpleDataEvent();
-//                    RxBus.getDefault().post(event);
-//                }
+                if (TextUtils.isEmpty(name.getText())){
+                    Log.i("name","剧本名不能为空");
+                }else if (TextUtils.isEmpty(introduction.getText())){
+                    Log.i("introduction","简介不能为空");
+                }else if (image_path.equals("null")){
+                    Log.i("selectedImage","图片不能为空");
+                }else {
+                    RxBus.getDefault().post(new JumpEvent(0));
+                }
+            }
+        });
+        last.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RxBus.getDefault().post(new JumpEvent(-1));
             }
         });
     }

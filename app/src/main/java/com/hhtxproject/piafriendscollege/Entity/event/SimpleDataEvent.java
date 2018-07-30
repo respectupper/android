@@ -16,6 +16,28 @@ public class SimpleDataEvent {
 
     }
 
+    public SimpleDataEvent(String name){
+        this.name = name;
+    }
+
+    public SimpleDataEvent(String name, String aclass){
+        this.name = name;
+        this.aclass = aclass;
+    }
+
+    public SimpleDataEvent(String name, String aclass,int number){
+        this.name = name;
+        this.aclass = aclass;
+        this.number = number;
+    }
+
+    public SimpleDataEvent(String name, String aclass,int number,String title){
+        this.name = name;
+        this.aclass = aclass;
+        this.number = number;
+        this.title = title;
+    }
+
     public SimpleDataEvent(String name, String aclass,int number,String title,String introduce){
         this.name = name;
         this.aclass = aclass;

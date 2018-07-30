@@ -9,18 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.hhtxproject.piafriendscollege.Entity.Ad;
 import com.hhtxproject.piafriendscollege.Entity.PiaScript;
 import com.hhtxproject.piafriendscollege.Entity.PiaVoice;
 import com.hhtxproject.piafriendscollege.R;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
