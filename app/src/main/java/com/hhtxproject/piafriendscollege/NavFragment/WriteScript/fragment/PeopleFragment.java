@@ -42,8 +42,6 @@ import rx.functions.Action1;
 public class PeopleFragment extends Fragment {
 
     Unbinder unbinder;
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerview;
 
     private int [] woman = {R.mipmap.gw1,R.mipmap.gw2,R.mipmap.gw3,R.mipmap.gw4,R.mipmap.gw5};
     private int [] man = {R.mipmap.gm1,R.mipmap.gm2,R.mipmap.gm3,R.mipmap.gm4,R.mipmap.gm5};
