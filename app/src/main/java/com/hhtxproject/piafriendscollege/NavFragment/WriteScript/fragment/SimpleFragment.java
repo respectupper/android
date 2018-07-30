@@ -1,47 +1,59 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
+import com.bumptech.glide.request.target.Target;
 import com.hhtxproject.piafriendscollege.R;
-import com.hhtxproject.piafriendscollege.Rx.RxBus;
+
+import java.io.FileNotFoundException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SimpleFragment extends Fragment {
 
+    Unbinder unbinder;
+    @BindView(R.id.image)
+    ImageView image;
     @BindView(R.id.spinner)
     Spinner spinner;
-    Unbinder unbinder;
-    @BindView(R.id.toolbar_title)
-    TextView toolbarTitle;
-    @BindView(R.id.toolbar_title_right)
-    TextView toolbarTitleRight;
+    @BindView(R.id.name)
+    EditText name;
+    @BindView(R.id.introduction)
+    EditText introduction;
+    @BindView(R.id.last)
+    Button last;
+    @BindView(R.id.next)
+    Button next;
+    @BindView(R.id.addImg)
+    ImageButton addImg;
+
+    private static final int IMAGE_REQUEST_CODE = 0;
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -61,8 +73,7 @@ public class SimpleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_simple, container, false);
         unbinder = ButterKnife.bind(this, view);
-        setToolber();
-        setJump();
+        setImage();
         return view;
     }
 
@@ -82,26 +93,52 @@ public class SimpleFragment extends Fragment {
         unbinder.unbind();
     }
 
-    private void setToolber(){
-        toolbarTitle.setText("返回");
-        toolbarTitleRight.setText("下一步");
-        toolbarTitle.setVisibility(View.VISIBLE);
-        toolbarTitleRight.setVisibility(View.VISIBLE);
-    }
-
-    private void setJump(){
-        toolbarTitle.setOnClickListener(new View.OnClickListener() {
+    private void setImage() {
+        addImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RxBus.getDefault().post(new JumpEvent(-1));
+                Intent intent = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, IMAGE_REQUEST_CODE);
             }
         });
+    }
 
-        toolbarTitleRight.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        //在相册里面选择好相片之后调回到现在的这个activity中
+        switch (requestCode) {
+            case IMAGE_REQUEST_CODE://这里的requestCode是我自己设置的，就是确定返回到那个Activity的标志
+                if (resultCode == RESULT_OK) {//resultcode是setResult里面设置的code值
+                    try {
+                        Uri selectedImage = data.getData(); //获取系统返回的照片的Uri
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                        Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+                                filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        String path = cursor.getString(columnIndex);  //获取照片路径
+                        cursor.close();
+                        Bitmap bitmap = BitmapFactory.decodeFile(path);
+                        image.setImageBitmap(bitmap);
+                    } catch (Exception e) {
+                        // TODO Auto-generatedcatch block
+                        e.printStackTrace();
+                    }
+                }
+                break;
+        }
+    }
+
+    private void setJump() {
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (TextUtils.isEmpty(aname)){
-//                    Toast.makeText(getContext(),"剧本名不能为空",Toast.LENGTH_SHORT).show();
+//                if (TextUtils.isEmpty(name.getText())){
+//                    Toast.makeText(getContext(),"剧本名不能为空", Toast.LENGTH_SHORT).show();
 //                }else if (TextUtils.isEmpty(aclasss)){
 //                    Toast.makeText(getContext(),"剧本种类不能为空",Toast.LENGTH_SHORT).show();
 //                }else if (TextUtils.isEmpty(atitles)){
@@ -115,5 +152,9 @@ public class SimpleFragment extends Fragment {
 //                }
             }
         });
+    }
+
+    private void setSpinner() {
+
     }
 }

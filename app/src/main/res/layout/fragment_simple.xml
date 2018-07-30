@@ -2,70 +2,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@mipmap/writebg"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.SimpleFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_margin="20dp"
-            android:src="@mipmap/xiejuben"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <RelativeLayout
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:background="@mipmap/addimage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/image"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_margin="20dp"
+                android:src="@mipmap/xiejuben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:background="@mipmap/addimage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/addImg"
+                    android:background="@drawable/testicon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
                     android:textColor="#FFFFFF"
                     android:text="剧本名称"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <EditText
-                    android:hint="填写名称"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:text="剧本人数"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:textColor="#FFFFFF"
-                    android:text="剧本名称"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/name"
+                    android:hint="填写名称"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner"
+                    android:entries="@array/spinner_people_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                 </Spinner>
             </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="简介(100字)"
+                    android:textColor="#FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/introduction"
+                    android:textColorHint="#FFFFFF"
+                    android:hint="填写作品简介"
+                    android:textColor="#FFFFFF"
+                    android:maxLength="100"
+                    android:minLines="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:id="@+id/last"
+                    android:text="返回"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:id="@+id/next"
+                    android:text="下一步"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </FrameLayout>
