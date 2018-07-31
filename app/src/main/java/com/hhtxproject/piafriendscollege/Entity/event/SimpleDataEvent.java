@@ -11,6 +11,15 @@ public class SimpleDataEvent {
     private int number;
     private String title;
     private String introduce;
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public SimpleDataEvent(){
 

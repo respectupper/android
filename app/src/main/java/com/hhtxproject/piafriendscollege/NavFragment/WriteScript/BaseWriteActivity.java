@@ -1,5 +1,6 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,16 @@ import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 import com.hhtxproject.piafriendscollege.Tools.DialogExit;
 import com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide;
+import com.tencent.cos.xml.CosXmlService;
+import com.tencent.cos.xml.CosXmlServiceConfig;
+import com.tencent.cos.xml.exception.CosXmlClientException;
+import com.tencent.cos.xml.exception.CosXmlServiceException;
+import com.tencent.cos.xml.listener.CosXmlProgressListener;
+import com.tencent.cos.xml.listener.CosXmlResultListener;
+import com.tencent.cos.xml.model.CosXmlRequest;
+import com.tencent.cos.xml.model.CosXmlResult;
+import com.tencent.cos.xml.model.object.PutObjectRequest;
+import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +46,13 @@ public class BaseWriteActivity extends AppCompatActivity {
     private List<Fragment> fragments;
     private ViewPagerAdapter adapter;
 
+    String appid = "1254224113";
+    String region = "ap-beijing";
+    String secretId = "AKID8VM8Q3pk2W3z2UqpSCNXWZs1zpjYqcae";
+    String secretKey ="YBfy790HLTh1zpr0QACJZd8Xl3FICD8w";
+    long keyDuration = 600; //SecretKey 的有效时间，单位秒
+    private CosXmlService cosXmlService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +61,7 @@ public class BaseWriteActivity extends AppCompatActivity {
         setInitViewpager();
         getRxBus();
         getRexBusDataSave();
+        initCosxml();
     }
 
     private void setInitViewpager() {
@@ -100,10 +119,9 @@ public class BaseWriteActivity extends AppCompatActivity {
             @Override
             public void call(SimpleDataEvent simpleDataEvent) {
                 Log.i("TEXTaname",simpleDataEvent.getName());
-                Log.i("TEXTaclass",simpleDataEvent.getAclass());
                 Log.i("TEXTnumber",simpleDataEvent.getNumber()+"");
-                Log.i("TEXTatitle",simpleDataEvent.getTitle());
                 Log.i("TEXTaintroduce",simpleDataEvent.getIntroduce());
+                Log.i("TEXTaimagePath",simpleDataEvent.getImagePath());
             }
         });
         RxBus.getDefault().toObservable(PeopleDataEvent.class).subscribe(new Action1<PeopleDataEvent>() {
@@ -113,6 +131,61 @@ public class BaseWriteActivity extends AppCompatActivity {
 //                Log.i("TEXTasex",peopleDataEvent.getSex().get(1).toString()+"");
 //                Log.i("TEXTaBH",peopleDataEvent.getBH().get(1).toString()+"");
 //                Log.i("TEXTintroduce",peopleDataEvent.getIntroduce().get(1).toString()+"");
+            }
+        });
+    }
+
+
+    private void initCosxml(){
+        //创建 CosXmlServiceConfig 对象，根据需要修改默认的配置参数
+        CosXmlServiceConfig serviceConfig = new CosXmlServiceConfig.Builder()
+                .setAppidAndRegion(appid, region)
+                .setDebuggable(true)
+                .builder();
+
+        //创建获取签名类(请参考下面的生成签名示例，或者参考 sdk中提供的ShortTimeCredentialProvider类）
+        ShortTimeCredentialProvider shortTimeCredentialProvider = new ShortTimeCredentialProvider(secretId, secretKey, keyDuration);
+
+        //创建 CosXmlService 对象，实现对象存储服务各项操作.
+        Context context = getApplicationContext();//应用的上下文
+
+        cosXmlService = new CosXmlService(context,serviceConfig, shortTimeCredentialProvider);
+    }
+
+    private void upLoadImage(String fileName,String image_path){
+        String bucket = "test-image"; // cos v5 的 bucket格式为：xxx-appid, 如 test-1253960454
+        String cosPath = fileName; //格式如 cosPath = "test.txt";
+        String srcPath = image_path; // 如 srcPath = Environment.getExternalStorageDirectory().getPath() + "/test.txt";
+        long signDuration = 600; //签名的有效期，单位为秒
+
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, cosPath, srcPath);
+
+        putObjectRequest.setSign(signDuration,null,null); //若不调用，则默认使用sdk中sign duration（60s）
+
+/*设置进度显示
+  实现 CosXmlProgressListener.onProgress(long progress, long max)方法，
+  progress 已上传的大小， max 表示文件的总大小
+*/
+        putObjectRequest.setProgressListener(new CosXmlProgressListener() {
+            @Override
+            public void onProgress(long progress, long max) {
+                float result = (float) (progress * 100.0/max);
+                Log.w("TEST","progress =" + (long)result + "%");
+            }
+        });
+
+        //使用异步回调上传：sdk 为对象存储各项服务提供异步回调操作方法
+        cosXmlService.putObjectAsync(putObjectRequest, new CosXmlResultListener() {
+            @Override
+            public void onSuccess(CosXmlRequest request, CosXmlResult result) {
+                Log.w("TEST","success =" + result.accessUrl);
+            }
+
+            @Override
+            public void onFail(CosXmlRequest cosXmlRequest, CosXmlClientException clientException, CosXmlServiceException serviceException)  {
+
+                String errorMsg = clientException != null ? clientException.toString() : serviceException.toString();
+                Log.w("TEST",errorMsg+"123456");
             }
         });
     }

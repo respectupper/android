@@ -3,9 +3,11 @@ package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,14 +21,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
+import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
@@ -58,6 +63,7 @@ public class SimpleFragment extends Fragment {
     private static final int IMAGE_REQUEST_CODE = 0;
     private Uri selectedImage;
     private String image_path = "null";
+    private int count = 0;
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -136,13 +142,25 @@ public class SimpleFragment extends Fragment {
                 if (resultCode == RESULT_OK) {//resultcode是setResult里面设置的code值
                     try {
                         selectedImage = data.getData(); //获取系统返回的照片的Uri
+                        image.setImageURI(selectedImage);
                         String[] filePathColumn = {MediaStore.Images.Media.DATA};
                         Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                                 filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
                         cursor.moveToFirst();
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                         image_path = cursor.getString(columnIndex);
-                        image.setImageURI(selectedImage);
+
+                        //获取图片扩展名
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inJustDecodeBounds = true;
+                        BitmapFactory.decodeFile(image_path, options);
+                        String type = options.outMimeType;
+                        if (TextUtils.isEmpty(type)) {
+                            type = "未能识别的图片";
+                        } else {
+                            type = type.substring(6, type.length());
+                        }
+//                        upLoadImage("."+type,image_path);
                     } catch (Exception e) {
                         // TODO Auto-generatedcatch block
                         e.printStackTrace();
@@ -163,6 +181,7 @@ public class SimpleFragment extends Fragment {
                 }else if (image_path.equals("null")){
                     Log.i("selectedImage","图片不能为空");
                 }else {
+                    saveRxData();
                     RxBus.getDefault().post(new JumpEvent(0));
                 }
             }
@@ -179,7 +198,18 @@ public class SimpleFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.spinner_people_count, R.layout.my_spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        /**选项选择监听*/
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                count = position;
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @SuppressLint("NewApi")
@@ -206,7 +236,7 @@ public class SimpleFragment extends Fragment {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
-
+                    getActivity().finish();
                 }
                 return;
             }
@@ -214,5 +244,14 @@ public class SimpleFragment extends Fragment {
                 break;
 
         }
+    }
+
+    private void saveRxData(){
+        SimpleDataEvent simpleDataEvent = new SimpleDataEvent();
+        simpleDataEvent.setName(name.getText().toString().trim());
+        simpleDataEvent.setIntroduce(introduction.getText().toString().trim());
+        simpleDataEvent.setNumber(count);
+        simpleDataEvent.setImagePath(image_path);
+        RxBus.getDefault().post(simpleDataEvent);
     }
 }

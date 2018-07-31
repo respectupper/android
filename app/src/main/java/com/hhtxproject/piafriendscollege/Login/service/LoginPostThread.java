@@ -10,10 +10,6 @@ import android.widget.Toast;
 import com.hhtxproject.piafriendscollege.app.PApplication;
 import com.loopj.android.http.RequestParams;
 
-import java.util.HashMap;
-
-import okhttp3.FormBody;
-
 /**
  * Created by Respectupper on 2018/4/24.
  */
