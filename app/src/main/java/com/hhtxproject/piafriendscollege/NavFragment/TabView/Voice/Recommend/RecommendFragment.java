@@ -39,8 +39,25 @@ public class RecommendFragment extends Fragment {
     SwipeRefreshLayout swipeRefresh;
 
     private List<PiaVoice> listData;
-    private Handler handler;
     private RecyclerViewAdapter adapter;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 200:
+                    if (!"FAILED".equals(msg.obj)) {
+                        listData.addAll(new GetRecommendData(msg.obj.toString()).getListData());
+                        adapter.notifyDataSetChanged();
+                        swipeRefresh.setRefreshing(false);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,23 +87,6 @@ public class RecommendFragment extends Fragment {
     }
 
     private void getData() {
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                switch (msg.what) {
-                    case 200:
-                        if (!"FAILED".equals(msg.obj)) {
-                            listData.addAll(new GetRecommendData(msg.obj.toString()).getListData());
-                            adapter.notifyDataSetChanged();
-                            swipeRefresh.setRefreshing(false);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        };
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -94,7 +94,6 @@ public class RecommendFragment extends Fragment {
                 new LoadData(handler, "getVoice_pia", params).getData().sendToTarget();
             }
         }).start();
-
     }
 
     private void setRecyclerView() {
@@ -109,8 +108,13 @@ public class RecommendFragment extends Fragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                RequestParams params = new RequestParams();
-                new LoadData(handler, "getVoice_pia", params).getData().sendToTarget();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RequestParams params = new RequestParams();
+                        new LoadData(handler, "getVoice_pia", params).getData().sendToTarget();
+                    }
+                }).start();
             }
         });
     }

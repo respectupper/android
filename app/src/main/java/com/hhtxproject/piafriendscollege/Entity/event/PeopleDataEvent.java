@@ -7,40 +7,42 @@ import java.util.List;
  */
 
 public class PeopleDataEvent {
-    private List<String> name;
-    private List<String> introduce;
-    private List<Integer> sex;
-    private List<Integer> BH;
+    private String name;
+    private Integer sex;
+    private Integer BG;
 
-    public List<String> getName() {
+    public List<PeopleDataEvent> getList() {
+        return list;
+    }
+
+    public void setList(List<PeopleDataEvent> list) {
+        this.list = list;
+    }
+
+    private List<PeopleDataEvent> list;
+
+    public String getName() {
         return name;
     }
 
-    public void setName(List<String> name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public List<String> getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(List<String> introduce) {
-        this.introduce = introduce;
-    }
-
-    public List<Integer> getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(List<Integer> sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public List<Integer> getBH() {
-        return BH;
+    public Integer getBG() {
+        return BG;
     }
 
-    public void setBH(List<Integer> BH) {
-        this.BH = BH;
+    public void setBG(Integer BG) {
+        this.BG = BG;
     }
+
 }

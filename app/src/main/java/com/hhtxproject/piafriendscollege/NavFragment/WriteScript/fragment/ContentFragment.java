@@ -26,16 +26,7 @@ import rx.functions.Action1;
  */
 public class ContentFragment extends Fragment {
 
-
-    @BindView(R.id.toolbar_title)
-    TextView toolbarTitle;
-    @BindView(R.id.toolbar_title_right)
-    TextView toolbarTitleRight;
     Unbinder unbinder;
-    @BindView(R.id.imageView)
-    ImageView imageView;
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerview;
 
     public ContentFragment() {
         // Required empty public constructor
@@ -55,33 +46,13 @@ public class ContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         unbinder = ButterKnife.bind(this, view);
-        setToolber();
         setJump();
         getRxBusData();
         return view;
     }
 
-    private void setToolber() {
-        toolbarTitle.setText("上一步");
-        toolbarTitleRight.setText("提交");
-        toolbarTitle.setVisibility(View.VISIBLE);
-        toolbarTitleRight.setVisibility(View.VISIBLE);
-    }
-
     private void setJump() {
-        toolbarTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RxBus.getDefault().post(new JumpEvent(3));
-            }
-        });
 
-        toolbarTitleRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RxBus.getDefault().post(new JumpEvent(4));
-            }
-        });
     }
 
     private void getRxBusData() {
