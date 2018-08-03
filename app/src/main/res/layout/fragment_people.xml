@@ -5,139 +5,134 @@
     android:background="@mipmap/writebg"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.PeopleFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_margin="20dp"
-            android:src="@mipmap/xiejuben"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ScrollView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="20dp"
+                android:src="@mipmap/xiejuben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:orientation="vertical"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:id="@+id/id"
-                            android:layout_centerVertical="true"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <Button
-                                android:id="@+id/sex_boy"
-                                android:layout_marginLeft="10dp"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp" />
-                            <Button
-                                android:id="@+id/sex_girl"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_marginRight="10dp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentEnd="true"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <Button
-                                android:id="@+id/left"
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp" />
-                            <Button
-                                android:id="@+id/show"
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp" />
-                            <Button
-                                android:id="@+id/right"
-                                android:layout_gravity="center_vertical"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp" />
-                        </LinearLayout>
-                    </RelativeLayout>
+                    android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/id"
+                        android:layout_centerVertical="true"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <Button
-                            android:id="@+id/up"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_gravity="center"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp" />
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:id="@+id/image"
-                                android:layout_width="200dp"
-                                android:layout_height="360dp">
-
-                            </ImageView>
-                            <EditText
-                                android:id="@+id/pName"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20sp"
-                                android:hint="给角色起名"
-                                android:textColorHint="#FFFFFF"
-                                android:gravity="center"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                        <Button
-                            android:id="@+id/down"
+                            android:id="@+id/sex_boy"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_gravity="center"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp" />
+                        <Button
+                            android:id="@+id/sex_girl"
+                            android:layout_marginLeft="20dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <Button
-                            android:layout_weight="1"
-                            android:layout_margin="10dp"
-                            android:id="@+id/last"
-                            android:text="返回"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:id="@+id/left"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
                         <Button
+                            android:id="@+id/show"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp" />
+                        <Button
+                            android:id="@+id/right"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/up"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:layout_margin="10dp"
-                            android:id="@+id/next"
-                            android:text="下一步"
-                            android:layout_width="match_parent"
+                            android:id="@+id/image"
+                            android:layout_width="200dp"
+                            android:layout_height="360dp">
+
+                        </ImageView>
+                        <EditText
+                            android:id="@+id/pName"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:hint="给角色起名"
+                            android:textColorHint="#FFFFFF"
+                            android:gravity="center"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
+                    <Button
+                        android:id="@+id/down"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_gravity="center"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/last"
+                        android:text="返回"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:id="@+id/next"
+                        android:text="下一步"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

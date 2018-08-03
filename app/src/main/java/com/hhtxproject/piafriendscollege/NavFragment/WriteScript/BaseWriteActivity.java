@@ -72,7 +72,7 @@ public class BaseWriteActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         adapter = new ViewPagerAdapter(manager, fragments);
         viewpager.setAdapter(adapter);
-        viewpager.setCurrentItem(2);
+        viewpager.setCurrentItem(0);
         viewpager.setSlide(false);
     }
 
@@ -126,8 +126,8 @@ public class BaseWriteActivity extends AppCompatActivity {
             @Override
             public void call(PeopleDataEvent peopleDataEvent) {
                 for (int i = 0;i<peopleDataEvent.getList().size();i++){
-                    Log.i("Json","{角色名 - "+i+": "+peopleDataEvent.getList().get(i).getName()+" , 形象代码 -  : "+peopleDataEvent.getList().get(i).getBG()+" " +
-                            ", 性别 -  : "+peopleDataEvent.getList().get(i).getSex()+"}");
+//                    Log.i("Json","{角色名 - "+i+": "+peopleDataEvent.getList().get(i).getName()+" , 形象代码 -  : "+peopleDataEvent.getList().get(i).getBG()+" " +
+//                            ", 性别 -  : "+peopleDataEvent.getList().get(i).getSex()+"}");
                 }
             }
         });

@@ -1,6 +1,9 @@
 package com.hhtxproject.piafriendscollege.Entity.event;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Respectupper on 2018/6/13.
@@ -11,6 +14,16 @@ public class PeopleDataEvent {
     private Integer sex;
     private Integer BG;
 
+    public List<PeopleDataEvent> getSortList() {
+        return sortList;
+    }
+
+    public void setSortList(List<PeopleDataEvent> sortList) {
+        this.sortList = sortList;
+    }
+
+    private List<PeopleDataEvent> sortList;
+    private List<PeopleDataEvent> list;
     public List<PeopleDataEvent> getList() {
         return list;
     }
@@ -18,8 +31,6 @@ public class PeopleDataEvent {
     public void setList(List<PeopleDataEvent> list) {
         this.list = list;
     }
-
-    private List<PeopleDataEvent> list;
 
     public String getName() {
         return name;

@@ -75,6 +75,7 @@
                     android:scrollbars="none"
                     android:layout_weight="1"
                     android:id="@+id/spinner"
+                    android:spinnerMode="dialog"
                     android:entries="@array/spinner_people_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

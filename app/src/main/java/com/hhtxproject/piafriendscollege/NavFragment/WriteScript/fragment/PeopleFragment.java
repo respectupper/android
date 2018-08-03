@@ -20,7 +20,9 @@ import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,6 +65,7 @@ public class PeopleFragment extends Fragment {
     private int sexPointer = 0;
     private int indexPointer = 1;
     private List<PeopleDataEvent> list;
+    private boolean key = false;
 
     public PeopleFragment() {
         // Required empty public constructor
@@ -124,12 +127,18 @@ public class PeopleFragment extends Fragment {
                         if (pointer >= 0){
                             pointer--;
                             image.setBackgroundResource(girl[pointer]);
+                            if (pointer==0){
+                                up.setVisibility(View.INVISIBLE);
+                            }
                         }
                         break;
                     case 1:
                         if (pointer >= 0){
                             pointer--;
                             image.setBackgroundResource(boy[pointer]);
+                            if (pointer==0){
+                                up.setVisibility(View.INVISIBLE);
+                            }
                         }
                         break;
                 }
@@ -144,12 +153,18 @@ public class PeopleFragment extends Fragment {
                         if (pointer <= girl.length){
                             pointer++;
                             image.setBackgroundResource(girl[pointer]);
+                            if (pointer==girl.length){
+                                down.setVisibility(View.INVISIBLE);
+                            }
                         }
                         break;
                     case 1:
                         if (pointer <= boy.length){
                             pointer++;
                             image.setBackgroundResource(boy[pointer]);
+                            if (pointer==girl.length){
+                                down.setVisibility(View.INVISIBLE);
+                            }
                         }
                         break;
                 }
@@ -200,6 +215,7 @@ public class PeopleFragment extends Fragment {
                             image.setBackgroundResource(girl[0]);
                         }else {
                             Toast.makeText(getContext(),"已保存",Toast.LENGTH_SHORT).show();
+                            key = true;
                         }
                     }else {
                         PeopleDataEvent data = new PeopleDataEvent();
@@ -215,6 +231,7 @@ public class PeopleFragment extends Fragment {
                         }
                         if (indexPointer == count){
                             Toast.makeText(getContext(),"已保存",Toast.LENGTH_SHORT).show();
+                            key = true;
                         }
                     }
                     if (indexPointer < count){
@@ -262,6 +279,14 @@ public class PeopleFragment extends Fragment {
         last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count = 0;
+                pointer = 0;
+                sexPointer = 0;
+                indexPointer = 1;
+                list.clear();
+                key = false;
+                upDateSexAndBG();
+                show.setText(indexPointer+"");
                 JumpEvent event = new JumpEvent(1);
                 RxBus.getDefault().post(event);
             }
@@ -270,15 +295,29 @@ public class PeopleFragment extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveRxData();
-                JumpEvent event = new JumpEvent(2);
-                RxBus.getDefault().post(event);
+
+                if (indexPointer>=count&&key){
+                    saveRxData();
+                    JumpEvent event = new JumpEvent(2);
+                    RxBus.getDefault().post(event);
+                }else {
+                    Toast.makeText(getContext(),"请点右上角的保存",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     private void saveRxData(){
         PeopleDataEvent event = new PeopleDataEvent();
+//            List<PeopleDataEvent> sortList = new ArrayList<>();
+//            for (int i = 0;i<list.size();i++){
+//                PeopleDataEvent peopleDataEvent = new PeopleDataEvent();
+//                peopleDataEvent.setName(list.get(i).getName());
+//                peopleDataEvent.setSex(list.get(i).getSex());
+//                peopleDataEvent.setBG(list.get(i).getBG());
+//                sortList.add(peopleDataEvent);
+//            }
+//            event.setSortList(sortList);
         event.setList(list);
         RxBus.getDefault().post(event);
     }
