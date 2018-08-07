@@ -29,7 +29,11 @@
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
+<<<<<<< HEAD
         <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity"></activity>
+=======
+        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity"></activity>
+>>>>>>> 4ad071b2e0018abe7c2a60e918503c1674b9d3c7
     </application>
 
 </manifest>
