@@ -72,11 +72,11 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="40dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_margin="5dp"
@@ -94,10 +94,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scrollbars="none">
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/mRecyclerView"
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                            android:layout_height="match_parent">
+                            <RadioButton
+                                android:id="@+id/radio1"
+                                style="@style/RadioButtonStyle" />
+                            <RadioButton
+                                android:id="@+id/radio2"
+                                style="@style/RadioButtonStyle"/>
+                            <RadioButton
+                                android:id="@+id/radio3"
+                                style="@style/RadioButtonStyle"/>
+                            <RadioButton
+                                android:id="@+id/radio4"
+                                style="@style/RadioButtonStyle"/>
+                            <RadioButton
+                                android:id="@+id/radio5"
+                                style="@style/RadioButtonStyle"/>
+                            <RadioButton
+                                android:id="@+id/radio6"
+                                style="@style/RadioButtonStyle"/>
+                            <RadioButton
+                                android:id="@+id/radio7"
+                                style="@style/RadioButtonStyle"/>
+                        </RadioGroup>
                     </ScrollView>
                 </RelativeLayout>
                 <ImageView
@@ -108,18 +130,19 @@
                     android:layout_height="12dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
-            <ScrollView
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/mSwipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="5dp"
                 android:paddingTop="10dp">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/mRecyclerViewTwo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical">
                 </android.support.v7.widget.RecyclerView>
-            </ScrollView>
+            </android.support.v4.widget.SwipeRefreshLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

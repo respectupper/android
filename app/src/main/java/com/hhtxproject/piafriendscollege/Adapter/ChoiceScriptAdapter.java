@@ -22,7 +22,7 @@ public class ChoiceScriptAdapter extends RecyclerView.Adapter<ChoiceScriptAdapte
      * choice_img7 诗词
      */
     private String[] texts={"言情","古风","悬疑","同人","片段","恐怖","诗词"};
-    private int[] imgs={R.mipmap.choice_img3,R.mipmap.choice_img5,R.mipmap.choice_img1,R.mipmap.choice_img4,R.mipmap.choice_img6,R.mipmap.choice_img2,R.mipmap.choice_img7};
+    private int[] imgs={R.mipmap.yanqing,R.mipmap.yanqing,R.mipmap.yanqing,R.mipmap.yanqing,R.mipmap.yanqing,R.mipmap.yanqing,R.mipmap.yanqing};
 
     public ChoiceScriptAdapter(Context context){
         this.mContext=context;
@@ -36,7 +36,6 @@ public class ChoiceScriptAdapter extends RecyclerView.Adapter<ChoiceScriptAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textView.setText(texts[position]);
         holder.choice_script_back_item.setBackgroundResource(imgs[position]);
     }
 
@@ -47,11 +46,9 @@ public class ChoiceScriptAdapter extends RecyclerView.Adapter<ChoiceScriptAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView choice_script_back_item;
-        TextView textView;
         public ViewHolder(View itemView) {
             super(itemView);
             choice_script_back_item = itemView.findViewById(R.id.choice_script_back_item);
-            textView = itemView.findViewById(R.id.text);
         }
     }
 }
