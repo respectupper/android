@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hhtxproject.piafriendscollege.Entity.Visit;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
@@ -104,6 +105,8 @@ public class PeopleFragment extends Fragment {
                 sexPointer = 1;
                 image.setBackgroundResource(boy[pointer]);
                 upDateSexAndBG();
+                up.setVisibility(View.INVISIBLE);
+                down.setVisibility(View.VISIBLE);
             }
         });
 
@@ -114,31 +117,35 @@ public class PeopleFragment extends Fragment {
                 sexPointer = 0;
                 image.setBackgroundResource(girl[pointer]);
                 upDateSexAndBG();
+                up.setVisibility(View.INVISIBLE);
+                down.setVisibility(View.VISIBLE);
             }
         });
     }
 
     private void setShowImage(){
+        up.setVisibility(View.INVISIBLE);
         up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                down.setVisibility(View.VISIBLE);
                 switch (sexPointer){
                     case 0:
-                        if (pointer >= 0){
-                            pointer--;
-                            image.setBackgroundResource(girl[pointer]);
-                            if (pointer==0){
+                        if (pointer >= 1){
+                            if (pointer==1){
                                 up.setVisibility(View.INVISIBLE);
                             }
+                            pointer--;
+                            image.setBackgroundResource(girl[pointer]);
                         }
                         break;
                     case 1:
-                        if (pointer >= 0){
-                            pointer--;
-                            image.setBackgroundResource(boy[pointer]);
-                            if (pointer==0){
+                        if (pointer >= 1){
+                            if (pointer==1){
                                 up.setVisibility(View.INVISIBLE);
                             }
+                            pointer--;
+                            image.setBackgroundResource(boy[pointer]);
                         }
                         break;
                 }
@@ -148,24 +155,28 @@ public class PeopleFragment extends Fragment {
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                up.setVisibility(View.VISIBLE);
                 switch (sexPointer){
                     case 0:
-                        if (pointer <= girl.length){
+                        if (pointer <= girl.length-1){
                             pointer++;
+                            Log.i("poniter:====",pointer+",----"+sexPointer);
                             image.setBackgroundResource(girl[pointer]);
-                            if (pointer==girl.length){
+                            if (pointer==girl.length-1){
                                 down.setVisibility(View.INVISIBLE);
                             }
                         }
                         break;
                     case 1:
-                        if (pointer <= boy.length){
+                        if (pointer <= boy.length-1){
                             pointer++;
                             image.setBackgroundResource(boy[pointer]);
-                            if (pointer==girl.length){
+                            if (pointer==girl.length-1){
                                 down.setVisibility(View.INVISIBLE);
                             }
                         }
+                        break;
+                    default:
                         break;
                 }
             }
@@ -309,15 +320,6 @@ public class PeopleFragment extends Fragment {
 
     private void saveRxData(){
         PeopleDataEvent event = new PeopleDataEvent();
-//            List<PeopleDataEvent> sortList = new ArrayList<>();
-//            for (int i = 0;i<list.size();i++){
-//                PeopleDataEvent peopleDataEvent = new PeopleDataEvent();
-//                peopleDataEvent.setName(list.get(i).getName());
-//                peopleDataEvent.setSex(list.get(i).getSex());
-//                peopleDataEvent.setBG(list.get(i).getBG());
-//                sortList.add(peopleDataEvent);
-//            }
-//            event.setSortList(sortList);
         event.setList(list);
         RxBus.getDefault().post(event);
     }

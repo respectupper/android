@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -28,7 +28,8 @@
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
-        <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity"></activity>
+        <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
+        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity"></activity>
     </application>
 
 </manifest>

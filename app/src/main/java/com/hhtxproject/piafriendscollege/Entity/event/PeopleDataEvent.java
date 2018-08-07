@@ -13,17 +13,8 @@ public class PeopleDataEvent {
     private String name;
     private Integer sex;
     private Integer BG;
-
-    public List<PeopleDataEvent> getSortList() {
-        return sortList;
-    }
-
-    public void setSortList(List<PeopleDataEvent> sortList) {
-        this.sortList = sortList;
-    }
-
-    private List<PeopleDataEvent> sortList;
     private List<PeopleDataEvent> list;
+
     public List<PeopleDataEvent> getList() {
         return list;
     }
