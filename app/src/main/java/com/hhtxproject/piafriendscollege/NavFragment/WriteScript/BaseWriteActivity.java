@@ -118,19 +118,17 @@ public class BaseWriteActivity extends AppCompatActivity {
         RxBus.getDefault().toObservable(SimpleDataEvent.class).subscribe(new Action1<SimpleDataEvent>() {
             @Override
             public void call(SimpleDataEvent simpleDataEvent) {
-                Log.i("TEXTaname",simpleDataEvent.getName());
-                Log.i("TEXTnumber",simpleDataEvent.getNumber()+"");
-                Log.i("TEXTaintroduce",simpleDataEvent.getIntroduce());
-                Log.i("TEXTaimagePath",simpleDataEvent.getImagePath());
+                Log.i("Json","{name : "+simpleDataEvent.getName()+" , number : "+simpleDataEvent.getNumber()+" " +
+                        ", introduce : "+simpleDataEvent.getIntroduce()+" , imagePath : "+simpleDataEvent.getImagePath()+"}");
             }
         });
         RxBus.getDefault().toObservable(PeopleDataEvent.class).subscribe(new Action1<PeopleDataEvent>() {
             @Override
             public void call(PeopleDataEvent peopleDataEvent) {
-//                Log.i("TEXTname",peopleDataEvent.getName().get(1).toString()+"");
-//                Log.i("TEXTasex",peopleDataEvent.getSex().get(1).toString()+"");
-//                Log.i("TEXTaBH",peopleDataEvent.getBH().get(1).toString()+"");
-//                Log.i("TEXTintroduce",peopleDataEvent.getIntroduce().get(1).toString()+"");
+                for (int i = 0;i<peopleDataEvent.getList().size();i++){
+//                    Log.i("Json","{角色名 - "+i+": "+peopleDataEvent.getList().get(i).getName()+" , 形象代码 -  : "+peopleDataEvent.getList().get(i).getBG()+" " +
+//                            ", 性别 -  : "+peopleDataEvent.getList().get(i).getSex()+"}");
+                }
             }
         });
     }

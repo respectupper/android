@@ -63,7 +63,7 @@ public class SimpleFragment extends Fragment {
     private static final int IMAGE_REQUEST_CODE = 0;
     private Uri selectedImage;
     private String image_path = "null";
-    private int count = 0;
+    private int count = 1;
 
     public SimpleFragment() {
         // Required empty public constructor
@@ -174,12 +174,12 @@ public class SimpleFragment extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(name.getText())){
-                    Log.i("name","剧本名不能为空");
+                if (image_path.equals("null")){
+                    Log.i("selectedImage","图片不能为空");
                 }else if (TextUtils.isEmpty(introduction.getText())){
                     Log.i("introduction","简介不能为空");
-                }else if (image_path.equals("null")){
-                    Log.i("selectedImage","图片不能为空");
+                }else if (TextUtils.isEmpty(name.getText())){
+                    Log.i("name","剧本名不能为空");
                 }else {
                     saveRxData();
                     RxBus.getDefault().post(new JumpEvent(0));
@@ -202,7 +202,7 @@ public class SimpleFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                count = position;
+                count = position+1;
             }
 
             @Override
@@ -232,7 +232,6 @@ public class SimpleFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 0: {
-
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
@@ -242,7 +241,6 @@ public class SimpleFragment extends Fragment {
             }
             default:
                 break;
-
         }
     }
 

@@ -2,35 +2,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/background"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.ContentFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include layout="@layout/layout_toolbar" android:id="@+id/toolbar"/>
-        <ScrollView
-            android:scrollbars="none"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <RelativeLayout
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="20dp"
+                android:src="@mipmap/xiejuben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:text="预览"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:background="@mipmap/gm1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="220dp"
+            android:layout_height="396dp" />
+        <RelativeLayout
+            android:paddingBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+            <Spinner
+                android:id="@+id/spinner"
+                android:spinnerMode="dialog"
+                android:entries="@array/query_suggestions"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="45dp"
+                android:background="#90FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview"
-                    android:layout_alignParentBottom="true"
+                <RelativeLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                </android.support.v7.widget.RecyclerView>
-            </RelativeLayout>
-        </ScrollView>
-    </LinearLayout>
-
+                    <Button
+                        android:id="@+id/left"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/testicon"
+                        android:layout_width="30dp"
+                        android:layout_height="15dp" />
+                    <Button
+                        android:id="@+id/right"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/testicon"
+                        android:layout_width="30dp"
+                        android:layout_height="15dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/content"
+                        android:background="#00000000"
+                        android:minLines="4"
+                        android:gravity="left|top"
+                        android:inputType="textMultiLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/end"
+                        android:layout_alignParentEnd="true"
+                        android:text="结束"
+                        android:textColor="#42A4FB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 </FrameLayout>

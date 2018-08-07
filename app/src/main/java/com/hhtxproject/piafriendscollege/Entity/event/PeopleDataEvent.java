@@ -1,46 +1,59 @@
 package com.hhtxproject.piafriendscollege.Entity.event;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Respectupper on 2018/6/13.
  */
 
 public class PeopleDataEvent {
-    private List<String> name;
-    private List<String> introduce;
-    private List<Integer> sex;
-    private List<Integer> BH;
+    private String name;
+    private Integer sex;
+    private Integer BG;
 
-    public List<String> getName() {
+    public List<PeopleDataEvent> getSortList() {
+        return sortList;
+    }
+
+    public void setSortList(List<PeopleDataEvent> sortList) {
+        this.sortList = sortList;
+    }
+
+    private List<PeopleDataEvent> sortList;
+    private List<PeopleDataEvent> list;
+    public List<PeopleDataEvent> getList() {
+        return list;
+    }
+
+    public void setList(List<PeopleDataEvent> list) {
+        this.list = list;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(List<String> name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public List<String> getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(List<String> introduce) {
-        this.introduce = introduce;
-    }
-
-    public List<Integer> getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(List<Integer> sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public List<Integer> getBH() {
-        return BH;
+    public Integer getBG() {
+        return BG;
     }
 
-    public void setBH(List<Integer> BH) {
-        this.BH = BH;
+    public void setBG(Integer BG) {
+        this.BG = BG;
     }
+
 }

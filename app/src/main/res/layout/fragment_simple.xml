@@ -33,9 +33,7 @@
                     android:layout_height="wrap_content" />
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/image"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginTop="7dp"
-                    fresco:viewAspectRatio="2.5"
+                    fresco:viewAspectRatio="2"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
@@ -77,6 +75,7 @@
                     android:scrollbars="none"
                     android:layout_weight="1"
                     android:id="@+id/spinner"
+                    android:spinnerMode="dialog"
                     android:entries="@array/spinner_people_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -93,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <EditText
+                    android:gravity="left|top"
                     android:id="@+id/introduction"
                     android:textColorHint="#FFFFFF"
                     android:hint="填写作品简介"
