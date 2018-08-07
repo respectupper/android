@@ -2,6 +2,7 @@ package com.hhtxproject.piafriendscollege.NavFragment.ModeAndRoom;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -24,6 +25,9 @@ import android.widget.Toast;
 import com.hhtxproject.piafriendscollege.Adapter.CSScriptAdapter;
 import com.hhtxproject.piafriendscollege.Adapter.ChoiceScriptAdapter;
 import com.hhtxproject.piafriendscollege.R;
+import com.hhtxproject.piafriendscollege.Tools.RecyclerViewUtil;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +65,16 @@ public class ChoiceScriptActivity extends AppCompatActivity {
     @BindView(R.id.mSwipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private ChoiceScriptAdapter mAdapter;
+    private ArrayList<String> data;
+    private int START_POS_1 = 0;
+    private int START_POS_2 = 20;
+    private int START_POS_3 = 20;
+    private int START_POS_4 = 20;
+    private int START_POS_5 = 20;
+    private int START_POS_6 = 20;
+    private int START_POS_7 = 20;
+    private RecyclerViewUtil mRecyclerViewUtil;
+    private CSScriptAdapter csScriptAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +96,17 @@ public class ChoiceScriptActivity extends AppCompatActivity {
             public void onRefresh() {
                 switch (radioGroup.getCheckedRadioButtonId()){
                     case R.id.radio1:
+                        data.clear();
+                        START_POS_1 = 0;
+                        Sentimentdata();
+                        csScriptAdapter.notifyDataSetChanged();
                         Toast.makeText(ChoiceScriptActivity.this,"已经刷新", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio2:
+                        data.clear();
+                        START_POS_2 = 20;
+                        Antiquitydata();
+                        csScriptAdapter.notifyDataSetChanged();
                         break;
                     case R.id.radio3:
                         break;
@@ -112,10 +133,32 @@ public class ChoiceScriptActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.radio1:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        mSwipeRefreshLayout.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mSwipeRefreshLayout.setRefreshing(true);
+                                mRecyclerViewTwo.smoothScrollToPosition(0);
+                                data.clear();
+                                START_POS_1 = 0;
+                                Sentimentdata();
+                                csScriptAdapter.notifyDataSetChanged();
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                         break;
                     case R.id.radio2:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        mSwipeRefreshLayout.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mSwipeRefreshLayout.setRefreshing(true);
+                                mRecyclerViewTwo.smoothScrollToPosition(0);
+                                data.clear();
+                                START_POS_2 = 20;
+                                Antiquitydata();
+                                csScriptAdapter.notifyDataSetChanged();
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                         break;
                     case R.id.radio3:
                         Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
@@ -164,10 +207,98 @@ public class ChoiceScriptActivity extends AppCompatActivity {
     }
 
     private void addScriptAdapter() {
+        data = new ArrayList<>();
+        int count = 20;
+        for (int i = 0; i < count; i++) {
+            data.add(String.valueOf(i));
+        }
+
+        START_POS_1 = START_POS_1 + count;
+
         GridLayoutManager manager = new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false);
         mRecyclerViewTwo.setLayoutManager(manager);
-        CSScriptAdapter csScriptAdapter = new CSScriptAdapter();
+        csScriptAdapter = new CSScriptAdapter(data);
         mRecyclerViewTwo.setAdapter(csScriptAdapter);
+
+        mRecyclerViewUtil = new RecyclerViewUtil(this, mRecyclerViewTwo);
+        mRecyclerViewUtil.setOnLoadMoreListener(new RecyclerViewUtil.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                Toast.makeText(getApplicationContext(), "已经到底，加载更多..."+START_POS_1, Toast.LENGTH_SHORT).show();
+                mRecyclerViewUtil.setLoadMoreEnable(false);
+                switch (radioGroup.getCheckedRadioButtonId()){
+                    case R.id.radio1:
+                        loadSentimentdata(START_POS_1,20);
+                        break;
+                    case R.id.radio2:
+                        loadAntiquitydata(START_POS_2,20);
+                        break;
+                    case R.id.radio3:
+                        break;
+                    case R.id.radio4:
+                        break;
+                    case R.id.radio5:
+                        break;
+                    case R.id.radio6:
+                        break;
+                    case R.id.radio7:
+                        break;
+                }
+            }
+        });
+
+        mRecyclerViewUtil.setOnItemClickListener(new RecyclerViewUtil.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view) {
+//                Toast.makeText(getApplicationContext(), "单击" + position, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(ChoiceScriptActivity.this,ScriptDetailsActivity.class);
+                i.putExtra("activity_name",data.get(position));
+                startActivity(i);
+            }
+        });
+
+        mRecyclerViewUtil.setOnItemLongClickListener(new RecyclerViewUtil.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(int position, View view) {
+                Toast.makeText(getApplicationContext(), "长按" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    //言情
+    private void loadSentimentdata(int startPos, int count) {
+        for (int i = 0; i < count; i++) {
+            data.add(startPos + i + "");
+        }
+        csScriptAdapter.notifyDataSetChanged();
+        Toast.makeText(getApplicationContext(), "加载了" + count + " 条数据", Toast.LENGTH_SHORT).show();
+
+        START_POS_1 = startPos + count;
+        mRecyclerViewUtil.setLoadMoreEnable(true);
+    }
+    //古风
+    private void loadAntiquitydata(int startPos, int count) {
+        for (int i = 0; i < count; i++) {
+            data.add(startPos + i +100+ "");
+        }
+        csScriptAdapter.notifyDataSetChanged();
+        Toast.makeText(getApplicationContext(), "加载了" + count + " 条数据", Toast.LENGTH_SHORT).show();
+
+        START_POS_2 = startPos + count;
+        mRecyclerViewUtil.setLoadMoreEnable(true);
+    }
+
+    //古风数据加载
+    private void Antiquitydata() {
+        for (int i = 0; i < 20; i++) {
+            data.add(String.valueOf(i + 100));
+        }
+    }
+
+    //言情数据加载
+    private void Sentimentdata() {
+        for (int i = 0; i < 20; i++) {
+            data.add(String.valueOf(i));
+        }
     }
 
 //    private void addAdapter() {

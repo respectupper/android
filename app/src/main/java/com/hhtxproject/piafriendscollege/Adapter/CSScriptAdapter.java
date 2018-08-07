@@ -9,8 +9,13 @@ import android.widget.TextView;
 
 import com.hhtxproject.piafriendscollege.R;
 
+import java.util.ArrayList;
+
 public class CSScriptAdapter extends RecyclerView.Adapter<CSScriptAdapter.ViewHolder> {
-    private String[] title = {"nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn","nnn"};
+    private ArrayList<String> data;
+    public CSScriptAdapter(ArrayList<String> data){
+        this.data = data;
+    }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_c_script_item, parent, false);
@@ -19,7 +24,7 @@ public class CSScriptAdapter extends RecyclerView.Adapter<CSScriptAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.Title.setText(title[position]);
+        holder.Title.setText(data.get(position));
 //        holder.Number.setText();
 //        holder.category.setText();
 //        holder.head.setBackgroundResource();
@@ -27,7 +32,7 @@ public class CSScriptAdapter extends RecyclerView.Adapter<CSScriptAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return title.length;
+        return data.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
