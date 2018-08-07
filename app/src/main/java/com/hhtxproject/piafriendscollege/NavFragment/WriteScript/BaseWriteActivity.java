@@ -10,6 +10,8 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
+import com.hhtxproject.piafriendscollege.Entity.Visit;
+import com.hhtxproject.piafriendscollege.Entity.event.ContentEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
@@ -30,6 +32,10 @@ import com.tencent.cos.xml.model.CosXmlRequest;
 import com.tencent.cos.xml.model.CosXmlResult;
 import com.tencent.cos.xml.model.object.PutObjectRequest;
 import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +59,10 @@ public class BaseWriteActivity extends AppCompatActivity {
     long keyDuration = 600; //SecretKey 的有效时间，单位秒
     private CosXmlService cosXmlService;
 
+    public static String[] data = {"null"};
+    private List<String> pepleList;
+    private List<String> contentList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +70,11 @@ public class BaseWriteActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setInitViewpager();
         getRxBus();
-        getRexBusDataSave();
+        getSimpleDataSave();
+        getPeopleDataSave();
+        getContentDataSave();
         initCosxml();
+        Visit.BaseWriteActivity = this;
     }
 
     private void setInitViewpager() {
@@ -103,9 +116,9 @@ public class BaseWriteActivity extends AppCompatActivity {
                     case 2:
                         viewpager.setCurrentItem(2);
                         break;
-                    case 3:
-                        viewpager.setCurrentItem(1);
-                        break;
+//                    case 3:
+//                        viewpager.setCurrentItem(1);
+//                        break;
                     case 4:
                         Toast.makeText(BaseWriteActivity.this,"完成",Toast.LENGTH_SHORT).show();
                         break;
@@ -114,25 +127,44 @@ public class BaseWriteActivity extends AppCompatActivity {
         });
     }
 
-    private void getRexBusDataSave(){
+    private void getSimpleDataSave(){
         RxBus.getDefault().toObservable(SimpleDataEvent.class).subscribe(new Action1<SimpleDataEvent>() {
             @Override
             public void call(SimpleDataEvent simpleDataEvent) {
-                Log.i("Json","{name : "+simpleDataEvent.getName()+" , number : "+simpleDataEvent.getNumber()+" " +
+                data[0] = "{name:"+simpleDataEvent.getName()+",number:"+simpleDataEvent.getNumber()+",introduce:"+simpleDataEvent.getIntroduce()+",imagePath:"+simpleDataEvent.getImagePath()+"}".toString();
+
+                Log.i("SimpleData","{name : "+simpleDataEvent.getName()+" , number : "+simpleDataEvent.getNumber()+" " +
                         ", introduce : "+simpleDataEvent.getIntroduce()+" , imagePath : "+simpleDataEvent.getImagePath()+"}");
+
             }
         });
+    }
+
+    private void getPeopleDataSave(){
+        pepleList = new ArrayList<>();
         RxBus.getDefault().toObservable(PeopleDataEvent.class).subscribe(new Action1<PeopleDataEvent>() {
             @Override
             public void call(PeopleDataEvent peopleDataEvent) {
                 for (int i = 0;i<peopleDataEvent.getList().size();i++){
-//                    Log.i("Json","{角色名 - "+i+": "+peopleDataEvent.getList().get(i).getName()+" , 形象代码 -  : "+peopleDataEvent.getList().get(i).getBG()+" " +
-//                            ", 性别 -  : "+peopleDataEvent.getList().get(i).getSex()+"}");
+                    pepleList.add("{name:"+peopleDataEvent.getList().get(i).getName()+",sexId"+peopleDataEvent.getList().get(i).getBG()+"sex:"+peopleDataEvent.getList().get(i).getSex()+"}");
+                    Log.i("PeopleData","{name:"+peopleDataEvent.getList().get(i).getName()+",sexId"+peopleDataEvent.getList().get(i).getBG()+"sex:"+peopleDataEvent.getList().get(i).getSex()+"}");
                 }
             }
         });
     }
 
+    private void getContentDataSave(){
+        contentList = new ArrayList<>();
+        RxBus.getDefault().toObservable(ContentEvent.class).subscribe(new Action1<ContentEvent>() {
+            @Override
+            public void call(ContentEvent contentEvent) {
+                for (int i = 0;i<contentEvent.getList().size();i++){
+                    contentList.add("{point:"+contentEvent.getList().get(i).getPointer()+",content:"+contentEvent.getList().get(i).getContent());
+                    Log.i("ContentData","{point:"+contentEvent.getList().get(i).getPointer()+",content:"+contentEvent.getList().get(i).getContent());
+                }
+            }
+        });
+    }
 
     private void initCosxml(){
         //创建 CosXmlServiceConfig 对象，根据需要修改默认的配置参数
