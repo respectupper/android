@@ -18,8 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hhtxproject.piafriendscollege.Entity.Visit;
-import com.hhtxproject.piafriendscollege.Entity.event.ContentEvent;
+import com.hhtxproject.piafriendscollege.Entity.event.ContentDataEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
 import com.hhtxproject.piafriendscollege.R;
@@ -57,7 +56,7 @@ public class ContentFragment extends Fragment {
     private List<PeopleDataEvent> data;
     private int peoplePointer = 0;
     private int indexPointer = 0;
-    private List<ContentEvent> list;
+    private List<ContentDataEvent> list;
 
     public ContentFragment() {
         // Required empty public constructor
@@ -94,13 +93,13 @@ public class ContentFragment extends Fragment {
                         Log.i("!!!+++!!!!!","一号通道");
                     }
                     if (indexPointer+1>list.size()){
-                        ContentEvent event = new ContentEvent();
+                        ContentDataEvent event = new ContentDataEvent();
                         event.setPointer(peoplePointer);
                         event.setContent(content.getText().toString().trim());
                         list.add(event);
                         Log.i("!!!+++!!!!!","二号通道");
                     }else {
-                        ContentEvent event = new ContentEvent();
+                        ContentDataEvent event = new ContentDataEvent();
                         event.setPointer(peoplePointer);
                         event.setContent(content.getText().toString().trim());
                         list.set(indexPointer,event);
@@ -127,7 +126,7 @@ public class ContentFragment extends Fragment {
                         Reset();
                         Log.i("!!!+++!!!!!","五号通道");
                     }else {
-                        ContentEvent event = new ContentEvent();
+                        ContentDataEvent event = new ContentDataEvent();
                         event.setPointer(peoplePointer);
                         event.setContent(content.getText().toString().trim());
                         list.set(indexPointer,event);
@@ -141,7 +140,7 @@ public class ContentFragment extends Fragment {
                     }
                 }else {
                     if (!content.getText().toString().trim().equals("")){
-                        ContentEvent data = new ContentEvent();
+                        ContentDataEvent data = new ContentDataEvent();
                         data.setPointer(peoplePointer);
                         data.setContent(content.getText().toString().trim());
                         list.add(data);
@@ -259,13 +258,12 @@ public class ContentFragment extends Fragment {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContentEvent data = new ContentEvent();
+                ContentDataEvent data = new ContentDataEvent();
                 data.setList(list);
                 RxBus.getDefault().post(data);
 
-                Log.i("ContentData","");
-//                JumpEvent event = new JumpEvent(4);
-//                RxBus.getDefault().post(event);
+                JumpEvent event = new JumpEvent(4);
+                RxBus.getDefault().post(event);
             }
         });
     }

@@ -1,10 +1,12 @@
 package com.hhtxproject.piafriendscollege.Entity.event;
 
+import java.io.Serializable;
+
 /**
  * Created by Respectupper on 2018/6/6.
  */
 
-public class SimpleDataEvent {
+public class SimpleDataEvent implements Serializable {
 
     private String name;
     private String aclass;

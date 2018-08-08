@@ -1,21 +1,22 @@
 package com.hhtxproject.piafriendscollege.Entity.event;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Respectupper on 2018/8/3.
  */
 
-public class ContentEvent {
+public class ContentDataEvent implements Serializable {
     private String content;
     private int pointer;
-    private List<ContentEvent> list;
+    private List<ContentDataEvent> list;
 
-    public List<ContentEvent> getList() {
+    public List<ContentDataEvent> getList() {
         return list;
     }
 
-    public void setList(List<ContentEvent> list) {
+    public void setList(List<ContentDataEvent> list) {
         this.list = list;
     }
 

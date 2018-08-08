@@ -19,6 +19,15 @@ public class BrowseFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static BrowseFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        BrowseFragment fragment = new BrowseFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

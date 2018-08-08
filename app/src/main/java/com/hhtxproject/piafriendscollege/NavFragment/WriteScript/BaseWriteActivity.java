@@ -1,6 +1,7 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.Visit;
-import com.hhtxproject.piafriendscollege.Entity.event.ContentEvent;
+import com.hhtxproject.piafriendscollege.Entity.event.ContentDataEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
 import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
@@ -33,10 +34,7 @@ import com.tencent.cos.xml.model.CosXmlResult;
 import com.tencent.cos.xml.model.object.PutObjectRequest;
 import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +57,9 @@ public class BaseWriteActivity extends AppCompatActivity {
     long keyDuration = 600; //SecretKey 的有效时间，单位秒
     private CosXmlService cosXmlService;
 
-    public static String[] data = {"null"};
-    private List<String> pepleList;
-    private List<String> contentList;
+    private ArrayList<SimpleDataEvent> simpleList;
+    private ArrayList<PeopleDataEvent> peopleList;
+    private ArrayList<ContentDataEvent> contentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +119,11 @@ public class BaseWriteActivity extends AppCompatActivity {
 //                        break;
                     case 4:
                         Toast.makeText(BaseWriteActivity.this,"完成",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(BaseWriteActivity.this,BaseReleaseActivity.class);
+                        intent.putExtra("simpleData",simpleList);
+                        intent.putExtra("peopleData", peopleList);
+                        intent.putExtra("contentData",contentList);
+                        startActivity(intent);
                         break;
                 }
             }
@@ -131,8 +134,8 @@ public class BaseWriteActivity extends AppCompatActivity {
         RxBus.getDefault().toObservable(SimpleDataEvent.class).subscribe(new Action1<SimpleDataEvent>() {
             @Override
             public void call(SimpleDataEvent simpleDataEvent) {
-                data[0] = "{name:"+simpleDataEvent.getName()+",number:"+simpleDataEvent.getNumber()+",introduce:"+simpleDataEvent.getIntroduce()+",imagePath:"+simpleDataEvent.getImagePath()+"}".toString();
-
+                simpleList = new ArrayList<>();
+                simpleList.add(simpleDataEvent);
                 Log.i("SimpleData","{name : "+simpleDataEvent.getName()+" , number : "+simpleDataEvent.getNumber()+" " +
                         ", introduce : "+simpleDataEvent.getIntroduce()+" , imagePath : "+simpleDataEvent.getImagePath()+"}");
 
@@ -141,12 +144,12 @@ public class BaseWriteActivity extends AppCompatActivity {
     }
 
     private void getPeopleDataSave(){
-        pepleList = new ArrayList<>();
         RxBus.getDefault().toObservable(PeopleDataEvent.class).subscribe(new Action1<PeopleDataEvent>() {
             @Override
             public void call(PeopleDataEvent peopleDataEvent) {
                 for (int i = 0;i<peopleDataEvent.getList().size();i++){
-                    pepleList.add("{name:"+peopleDataEvent.getList().get(i).getName()+",sexId"+peopleDataEvent.getList().get(i).getBG()+"sex:"+peopleDataEvent.getList().get(i).getSex()+"}");
+                    peopleList = new ArrayList<>();
+                    peopleList.addAll(peopleDataEvent.getList());
                     Log.i("PeopleData","{name:"+peopleDataEvent.getList().get(i).getName()+",sexId"+peopleDataEvent.getList().get(i).getBG()+"sex:"+peopleDataEvent.getList().get(i).getSex()+"}");
                 }
             }
@@ -154,13 +157,13 @@ public class BaseWriteActivity extends AppCompatActivity {
     }
 
     private void getContentDataSave(){
-        contentList = new ArrayList<>();
-        RxBus.getDefault().toObservable(ContentEvent.class).subscribe(new Action1<ContentEvent>() {
+        RxBus.getDefault().toObservable(ContentDataEvent.class).subscribe(new Action1<ContentDataEvent>() {
             @Override
-            public void call(ContentEvent contentEvent) {
-                for (int i = 0;i<contentEvent.getList().size();i++){
-                    contentList.add("{point:"+contentEvent.getList().get(i).getPointer()+",content:"+contentEvent.getList().get(i).getContent());
-                    Log.i("ContentData","{point:"+contentEvent.getList().get(i).getPointer()+",content:"+contentEvent.getList().get(i).getContent());
+            public void call(ContentDataEvent contentDataEvent) {
+                for (int i = 0; i< contentDataEvent.getList().size(); i++){
+                    contentList = new ArrayList<>();
+                    contentList.addAll(contentDataEvent.getList());
+                    Log.i("ContentData","{point:"+ contentDataEvent.getList().get(i).getPointer()+",content:"+ contentDataEvent.getList().get(i).getContent()+"}");
                 }
             }
         });
