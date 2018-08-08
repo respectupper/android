@@ -1,5 +1,6 @@
 package com.hhtxproject.piafriendscollege.Entity.event;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Map;
  * Created by Respectupper on 2018/6/13.
  */
 
-public class PeopleDataEvent {
+public class PeopleDataEvent implements Serializable {
     private String name;
     private Integer sex;
     private Integer BG;
