@@ -5,15 +5,14 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     tools:context="com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.BrowseFragment">
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ScrollView
-            android:scrollbars="none"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.CollapsingToolbarLayout
+                fresco:layout_scrollFlags="scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -28,6 +27,7 @@
                         android:orientation="horizontal">
 
                         <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_gravity="center_vertical"
                             android:id="@+id/image"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -54,12 +54,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="剧本名:" />
 
-                                <EditText
+                                <TextView
+                                    android:id="@+id/name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
                             </LinearLayout>
 
                             <LinearLayout
+                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
@@ -69,13 +71,15 @@
                                     android:layout_height="wrap_content"
                                     android:text="人数:" />
 
-                                <EditText
+                                <TextView
+                                    android:id="@+id/number"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content">
+
+                                </TextView>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -87,40 +91,49 @@
                             android:layout_height="wrap_content"
                             android:text="简介:" />
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/introduction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
-                <RelativeLayout
-                    android:background="@mipmap/writebg"
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v4.widget.NestedScrollView
+            android:paddingBottom="60dp"
+            android:background="@mipmap/writebg"
+            fresco:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:layout_weight="1"
+                    android:id="@+id/recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    </android.support.v7.widget.RecyclerView>
-                </RelativeLayout>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
         <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:padding="10dp"
+            android:layout_gravity="bottom"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp">
             <LinearLayout
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/edit"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
                 <TextView
                     android:layout_gravity="center_horizontal"
                     android:text="编辑"
@@ -129,19 +142,22 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <Button
+                android:text="发布"
+                android:id="@+id/release"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="40dp" />
             <LinearLayout
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/save"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp" />
                 <TextView
                     android:layout_gravity="center_horizontal"
                     android:text="保存"
@@ -150,5 +166,5 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

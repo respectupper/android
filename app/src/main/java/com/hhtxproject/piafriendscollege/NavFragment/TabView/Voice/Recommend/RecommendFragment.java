@@ -46,11 +46,11 @@ public class RecommendFragment extends Fragment {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 200:
-                    if (!"FAILED".equals(msg.obj)) {
-                        listData.addAll(new GetRecommendData(msg.obj.toString()).getListData());
-                        adapter.notifyDataSetChanged();
-                        swipeRefresh.setRefreshing(false);
-                    }
+//                    if (!"FAILED".equals(msg.obj)) {
+//                        listData.addAll(new GetRecommendData(msg.obj.toString()).getListData());
+//                        adapter.notifyDataSetChanged();
+//                        swipeRefresh.setRefreshing(false);
+//                    }
                     break;
                 default:
                     break;
@@ -91,7 +91,7 @@ public class RecommendFragment extends Fragment {
             @Override
             public void run() {
                 RequestParams params = new RequestParams();
-                new LoadData(handler, "getVoice_pia", params).getData().sendToTarget();
+                new LoadData(handler, "getVoice_pia", params,200).getData().sendToTarget();
             }
         }).start();
     }
@@ -112,7 +112,7 @@ public class RecommendFragment extends Fragment {
                     @Override
                     public void run() {
                         RequestParams params = new RequestParams();
-                        new LoadData(handler, "getVoice_pia", params).getData().sendToTarget();
+                        new LoadData(handler, "getVoice_pia", params,200).getData().sendToTarget();
                     }
                 }).start();
             }

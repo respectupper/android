@@ -3,11 +3,9 @@ package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,7 +15,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +28,7 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
@@ -149,18 +146,6 @@ public class SimpleFragment extends Fragment {
                         cursor.moveToFirst();
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                         image_path = cursor.getString(columnIndex);
-
-                        //获取图片扩展名
-                        BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFile(image_path, options);
-                        String type = options.outMimeType;
-                        if (TextUtils.isEmpty(type)) {
-                            type = "未能识别的图片";
-                        } else {
-                            type = type.substring(6, type.length());
-                        }
-//                        upLoadImage("."+type,image_path);
                     } catch (Exception e) {
                         // TODO Auto-generatedcatch block
                         e.printStackTrace();
@@ -175,11 +160,11 @@ public class SimpleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (image_path.equals("null")){
-                    Log.i("selectedImage","图片不能为空");
+                    Toast.makeText(getContext(),"图片不能为空",Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(introduction.getText())){
-                    Log.i("introduction","简介不能为空");
+                    Toast.makeText(getContext(),"简介不能为空",Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(name.getText())){
-                    Log.i("name","剧本名不能为空");
+                    Toast.makeText(getContext(),"剧本名不能为空",Toast.LENGTH_SHORT).show();
                 }else {
                     saveRxData();
                     RxBus.getDefault().post(new JumpEvent(0));
@@ -245,11 +230,12 @@ public class SimpleFragment extends Fragment {
     }
 
     private void saveRxData(){
-        SimpleDataEvent simpleDataEvent = new SimpleDataEvent();
-        simpleDataEvent.setName(name.getText().toString().trim());
-        simpleDataEvent.setIntroduce(introduction.getText().toString().trim());
-        simpleDataEvent.setNumber(count);
-        simpleDataEvent.setImagePath(image_path);
-        RxBus.getDefault().post(simpleDataEvent);
+        SimpleData simpleData = new SimpleData();
+        simpleData.setName(name.getText().toString().trim());
+        simpleData.setIntroduce(introduction.getText().toString().trim());
+        simpleData.setNumber(count);
+        simpleData.setImagePath(image_path);
+        simpleData.setImageUri(selectedImage.toString());
+        RxBus.getDefault().post(simpleData);
     }
 }

@@ -1,6 +1,5 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,10 +11,10 @@ import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.Visit;
-import com.hhtxproject.piafriendscollege.Entity.event.ContentDataEvent;
+import com.hhtxproject.piafriendscollege.Entity.ContentData;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
+import com.hhtxproject.piafriendscollege.Entity.PeopleData;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.ContentFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.PeopleFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.SimpleFragment;
@@ -23,18 +22,7 @@ import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 import com.hhtxproject.piafriendscollege.Tools.DialogExit;
 import com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide;
-import com.tencent.cos.xml.CosXmlService;
-import com.tencent.cos.xml.CosXmlServiceConfig;
-import com.tencent.cos.xml.exception.CosXmlClientException;
-import com.tencent.cos.xml.exception.CosXmlServiceException;
-import com.tencent.cos.xml.listener.CosXmlProgressListener;
-import com.tencent.cos.xml.listener.CosXmlResultListener;
-import com.tencent.cos.xml.model.CosXmlRequest;
-import com.tencent.cos.xml.model.CosXmlResult;
-import com.tencent.cos.xml.model.object.PutObjectRequest;
-import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,16 +38,9 @@ public class BaseWriteActivity extends AppCompatActivity {
     private List<Fragment> fragments;
     private ViewPagerAdapter adapter;
 
-    String appid = "1254224113";
-    String region = "ap-beijing";
-    String secretId = "AKID8VM8Q3pk2W3z2UqpSCNXWZs1zpjYqcae";
-    String secretKey ="YBfy790HLTh1zpr0QACJZd8Xl3FICD8w";
-    long keyDuration = 600; //SecretKey 的有效时间，单位秒
-    private CosXmlService cosXmlService;
-
-    private ArrayList<SimpleDataEvent> simpleList;
-    private ArrayList<PeopleDataEvent> peopleList;
-    private ArrayList<ContentDataEvent> contentList;
+    private ArrayList<SimpleData> simpleList;
+    private ArrayList<PeopleData> peopleList;
+    private ArrayList<ContentData> contentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +52,6 @@ public class BaseWriteActivity extends AppCompatActivity {
         getSimpleDataSave();
         getPeopleDataSave();
         getContentDataSave();
-        initCosxml();
         Visit.BaseWriteActivity = this;
     }
 
@@ -114,9 +94,9 @@ public class BaseWriteActivity extends AppCompatActivity {
                     case 2:
                         viewpager.setCurrentItem(2);
                         break;
-//                    case 3:
-//                        viewpager.setCurrentItem(1);
-//                        break;
+                    case 3:
+                        viewpager.setCurrentItem(1);
+                        break;
                     case 4:
                         Toast.makeText(BaseWriteActivity.this,"完成",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(BaseWriteActivity.this,BaseReleaseActivity.class);
@@ -131,95 +111,42 @@ public class BaseWriteActivity extends AppCompatActivity {
     }
 
     private void getSimpleDataSave(){
-        RxBus.getDefault().toObservable(SimpleDataEvent.class).subscribe(new Action1<SimpleDataEvent>() {
+        RxBus.getDefault().toObservable(SimpleData.class).subscribe(new Action1<SimpleData>() {
             @Override
-            public void call(SimpleDataEvent simpleDataEvent) {
+            public void call(SimpleData simpleData) {
                 simpleList = new ArrayList<>();
-                simpleList.add(simpleDataEvent);
-                Log.i("SimpleData","{name : "+simpleDataEvent.getName()+" , number : "+simpleDataEvent.getNumber()+" " +
-                        ", introduce : "+simpleDataEvent.getIntroduce()+" , imagePath : "+simpleDataEvent.getImagePath()+"}");
+                simpleList.add(simpleData);
+                Log.i("SimpleData","{name : "+ simpleData.getName()+" , number : "+ simpleData.getNumber()+" " +
+                        ", introduce : "+ simpleData.getIntroduce()+" , imagePath : "+ simpleData.getImagePath()+"}");
 
             }
         });
     }
 
     private void getPeopleDataSave(){
-        RxBus.getDefault().toObservable(PeopleDataEvent.class).subscribe(new Action1<PeopleDataEvent>() {
+        RxBus.getDefault().toObservable(PeopleData.class).subscribe(new Action1<PeopleData>() {
             @Override
-            public void call(PeopleDataEvent peopleDataEvent) {
-                for (int i = 0;i<peopleDataEvent.getList().size();i++){
+            public void call(PeopleData peopleData) {
+                for (int i = 0; i< peopleData.getList().size(); i++){
                     peopleList = new ArrayList<>();
-                    peopleList.addAll(peopleDataEvent.getList());
-                    Log.i("PeopleData","{name:"+peopleDataEvent.getList().get(i).getName()+",sexId"+peopleDataEvent.getList().get(i).getBG()+"sex:"+peopleDataEvent.getList().get(i).getSex()+"}");
+                    peopleList.addAll(peopleData.getList());
+                    Log.i("PeopleData","{name:"+ peopleData.getList().get(i).getName()+",sexId"+ peopleData.getList().get(i).getBG()+"sex:"+ peopleData.getList().get(i).getSex()+"}");
                 }
             }
         });
     }
 
     private void getContentDataSave(){
-        RxBus.getDefault().toObservable(ContentDataEvent.class).subscribe(new Action1<ContentDataEvent>() {
+        RxBus.getDefault().toObservable(ContentData.class).subscribe(new Action1<ContentData>() {
             @Override
-            public void call(ContentDataEvent contentDataEvent) {
-                for (int i = 0; i< contentDataEvent.getList().size(); i++){
+            public void call(ContentData contentData) {
+                for (int i = 0; i< contentData.getList().size(); i++){
                     contentList = new ArrayList<>();
-                    contentList.addAll(contentDataEvent.getList());
-                    Log.i("ContentData","{point:"+ contentDataEvent.getList().get(i).getPointer()+",content:"+ contentDataEvent.getList().get(i).getContent()+"}");
+                    contentList.addAll(contentData.getList());
+                    Log.i("ContentData","{point:"+ contentData.getList().get(i).getPointer()+",content:"+ contentData.getList().get(i).getContent()+"}");
                 }
             }
         });
     }
 
-    private void initCosxml(){
-        //创建 CosXmlServiceConfig 对象，根据需要修改默认的配置参数
-        CosXmlServiceConfig serviceConfig = new CosXmlServiceConfig.Builder()
-                .setAppidAndRegion(appid, region)
-                .setDebuggable(true)
-                .builder();
-
-        //创建获取签名类(请参考下面的生成签名示例，或者参考 sdk中提供的ShortTimeCredentialProvider类）
-        ShortTimeCredentialProvider shortTimeCredentialProvider = new ShortTimeCredentialProvider(secretId, secretKey, keyDuration);
-
-        //创建 CosXmlService 对象，实现对象存储服务各项操作.
-        Context context = getApplicationContext();//应用的上下文
-
-        cosXmlService = new CosXmlService(context,serviceConfig, shortTimeCredentialProvider);
-    }
-
-    private void upLoadImage(String fileName,String image_path){
-        String bucket = "test-image"; // cos v5 的 bucket格式为：xxx-appid, 如 test-1253960454
-        String cosPath = fileName; //格式如 cosPath = "test.txt";
-        String srcPath = image_path; // 如 srcPath = Environment.getExternalStorageDirectory().getPath() + "/test.txt";
-        long signDuration = 600; //签名的有效期，单位为秒
-
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, cosPath, srcPath);
-
-        putObjectRequest.setSign(signDuration,null,null); //若不调用，则默认使用sdk中sign duration（60s）
-
-/*设置进度显示
-  实现 CosXmlProgressListener.onProgress(long progress, long max)方法，
-  progress 已上传的大小， max 表示文件的总大小
-*/
-        putObjectRequest.setProgressListener(new CosXmlProgressListener() {
-            @Override
-            public void onProgress(long progress, long max) {
-                float result = (float) (progress * 100.0/max);
-                Log.w("TEST","progress =" + (long)result + "%");
-            }
-        });
-
-        //使用异步回调上传：sdk 为对象存储各项服务提供异步回调操作方法
-        cosXmlService.putObjectAsync(putObjectRequest, new CosXmlResultListener() {
-            @Override
-            public void onSuccess(CosXmlRequest request, CosXmlResult result) {
-                Log.w("TEST","success =" + result.accessUrl);
-            }
-
-            @Override
-            public void onFail(CosXmlRequest cosXmlRequest, CosXmlClientException clientException, CosXmlServiceException serviceException)  {
-
-                String errorMsg = clientException != null ? clientException.toString() : serviceException.toString();
-                Log.w("TEST",errorMsg+"123456");
-            }
-        });
-    }
 }

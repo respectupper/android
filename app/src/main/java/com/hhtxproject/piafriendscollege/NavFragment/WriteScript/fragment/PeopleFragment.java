@@ -1,6 +1,8 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -13,22 +15,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hhtxproject.piafriendscollege.Entity.Visit;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.PeopleDataEvent;
-import com.hhtxproject.piafriendscollege.Entity.event.SimpleDataEvent;
+import com.hhtxproject.piafriendscollege.Entity.PeopleData;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import rx.functions.Action1;
+
+import static com.hhtxproject.piafriendscollege.Entity.StaticData.BG.boy;
+import static com.hhtxproject.piafriendscollege.Entity.StaticData.BG.girl;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,13 +61,11 @@ public class PeopleFragment extends Fragment {
     @BindView(R.id.pName)
     TextView pName;
 
-    private int[] girl = {R.mipmap.gw1, R.mipmap.gw2, R.mipmap.gw3, R.mipmap.gw4, R.mipmap.gw5};
-    private int[] boy = {R.mipmap.gm1, R.mipmap.gm2, R.mipmap.gm3, R.mipmap.gm4, R.mipmap.gm5};
     private int count = 0;
     private int pointer = 0;
     private int sexPointer = 0;
     private int indexPointer = 1;
-    private List<PeopleDataEvent> list;
+    private List<PeopleData> list;
     private boolean key = false;
 
     public PeopleFragment() {
@@ -214,7 +214,7 @@ public class PeopleFragment extends Fragment {
             public void onClick(View view) {
                 if (!TextUtils.isEmpty(pName.getText().toString().trim())){
                     if (indexPointer > list.size()){
-                        PeopleDataEvent data = new PeopleDataEvent();
+                        PeopleData data = new PeopleData();
                         data.setName(pName.getText().toString().trim());
                         data.setSex(sexPointer);
                         data.setBG(pointer);
@@ -229,7 +229,7 @@ public class PeopleFragment extends Fragment {
                             key = true;
                         }
                     }else {
-                        PeopleDataEvent data = new PeopleDataEvent();
+                        PeopleData data = new PeopleData();
                         data.setName(pName.getText().toString().trim());
                         data.setSex(sexPointer);
                         data.setBG(pointer);
@@ -265,9 +265,9 @@ public class PeopleFragment extends Fragment {
     }
 
     private void getData() {
-        RxBus.getDefault().toObservable(SimpleDataEvent.class).subscribe(new Action1<SimpleDataEvent>() {
+        RxBus.getDefault().toObservable(SimpleData.class).subscribe(new Action1<SimpleData>() {
             @Override
-            public void call(SimpleDataEvent peopleDataEvent) {
+            public void call(SimpleData peopleDataEvent) {
                 count = peopleDataEvent.getNumber();
                 Log.i("number", count + "");
             }
@@ -290,23 +290,38 @@ public class PeopleFragment extends Fragment {
         last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count = 0;
-                pointer = 0;
-                sexPointer = 0;
-                indexPointer = 1;
-                list.clear();
-                key = false;
-                upDateSexAndBG();
-                show.setText(indexPointer+"");
-                JumpEvent event = new JumpEvent(1);
-                RxBus.getDefault().post(event);
+                AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                        .setTitle("提示")
+                        .setMessage("返回上页面后此页面数据将被清空,确认返回吗？")
+                        .setIcon(R.drawable.testicon)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                count = 0;
+                                pointer = 0;
+                                sexPointer = 0;
+                                indexPointer = 1;
+                                list.clear();
+                                key = false;
+                                upDateSexAndBG();
+                                show.setText(indexPointer+"");
+                                JumpEvent event = new JumpEvent(1);
+                                RxBus.getDefault().post(event);
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        }).create();
+                alertDialog.show();
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (indexPointer>=count&&key){
                     saveRxData();
                     JumpEvent event = new JumpEvent(2);
@@ -319,7 +334,7 @@ public class PeopleFragment extends Fragment {
     }
 
     private void saveRxData(){
-        PeopleDataEvent event = new PeopleDataEvent();
+        PeopleData event = new PeopleData();
         event.setList(list);
         RxBus.getDefault().post(event);
     }

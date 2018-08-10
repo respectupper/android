@@ -1,26 +1,23 @@
-package com.hhtxproject.piafriendscollege.Entity.event;
+package com.hhtxproject.piafriendscollege.Entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Respectupper on 2018/6/13.
  */
 
-public class PeopleDataEvent implements Serializable {
+public class PeopleData implements Serializable {
     private String name;
     private Integer sex;
     private Integer BG;
-    private List<PeopleDataEvent> list;
+    private List<PeopleData> list;
 
-    public List<PeopleDataEvent> getList() {
+    public List<PeopleData> getList() {
         return list;
     }
 
-    public void setList(List<PeopleDataEvent> list) {
+    public void setList(List<PeopleData> list) {
         this.list = list;
     }
 
