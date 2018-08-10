@@ -1,4 +1,4 @@
-package com.hhtxproject.piafriendscollege.Entity.event;
+package com.hhtxproject.piafriendscollege.Entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,16 +7,16 @@ import java.util.List;
  * Created by Respectupper on 2018/8/3.
  */
 
-public class ContentDataEvent implements Serializable {
+public class ContentData implements Serializable {
     private String content;
     private int pointer;
-    private List<ContentDataEvent> list;
+    private List<ContentData> list;
 
-    public List<ContentDataEvent> getList() {
+    public List<ContentData> getList() {
         return list;
     }
 
-    public void setList(List<ContentDataEvent> list) {
+    public void setList(List<ContentData> list) {
         this.list = list;
     }
 

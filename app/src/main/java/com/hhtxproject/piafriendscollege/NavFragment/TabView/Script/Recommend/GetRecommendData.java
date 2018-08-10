@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.hhtxproject.piafriendscollege.Entity.PiaScript;
 import com.hhtxproject.piafriendscollege.Entity.PiaUser;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,48 +19,47 @@ import java.util.List;
  */
 
 public class GetRecommendData {
-    private List<PiaScript> listData;
+    private List<SimpleData> listData;
 
     public GetRecommendData(Message msg){
         try {
             JSONObject json = new JSONObject(msg.obj.toString());
-            JSONArray array = json.getJSONArray("script_List_info");
-            List<PiaScript> data = new ArrayList<>();
+            JSONArray array = json.getJSONArray("script_list_info");
+            listData = new ArrayList<>();
             for (int i = 0;i<array.length();i++){
-                PiaScript script = new PiaScript();
-                script.setId(array.getJSONObject(i).optInt("script_id"));
+                SimpleData data = new SimpleData();
+                data.setScriptId(array.getJSONObject(i).optInt("script_id"));
 
-                JSONObject jsUser = new JSONObject(array.getJSONObject(i).optString("script_user"));
-                JSONObject jsonUser = jsUser.getJSONObject("userInfo");
-
+                JSONObject jsonUser = new JSONObject(URLDecoder.decode(array.getJSONObject(i).optString("script_userId"), "utf-8"));
+                JSONObject JUser = jsonUser.getJSONObject("userInfo");
                 PiaUser user = new PiaUser();
-                user.setUsername(URLDecoder.decode(jsonUser.optString("pia_username"), "utf-8"));
-                user.setAvatar(URLDecoder.decode(jsonUser.optString("pia_avatar"), "utf-8"));
-                script.setPiaUser(user);
+                user.setId(JUser.optInt("pia_userId"));
+                user.setUsername(URLDecoder.decode(JUser.optString("pia_username"), "utf-8"));
+                user.setAvatar(URLDecoder.decode(JUser.optString("pia_avatar"), "utf-8"));
 
-                script.setScriptName(URLDecoder.decode(array.getJSONObject(i).optString("script_name"), "utf-8"));
-                script.setScriptClass(URLDecoder.decode(array.getJSONObject(i).optString("script_class"), "utf-8"));
-                script.setScriptAvatar(URLDecoder.decode(array.getJSONObject(i).optString("script_avatar"), "utf-8"));
-                script.setScriptImgAvatar(URLDecoder.decode(array.getJSONObject(i).optString("script_img_avatar"), "utf-8"));
-                script.setScriptBrowse(array.getJSONObject(i).optInt("script_browse"));
-                script.setScriptIntroduce(URLDecoder.decode(array.getJSONObject(i).optString("script_introduce"), "utf-8"));
-                script.setScriptPeopleCount(array.getJSONObject(i).optInt("script_people_count"));
-               script.setScriptRole(URLDecoder.decode(array.getJSONObject(i).optString("script_role"), "utf-8"));
-//                JSONObject role = new JSONObject(URLDecoder.decode(array.getJSONObject(i).optString("script_role")));
-                script.setUpdateAt(array.getJSONObject(i).optString("updatedAt"));
-                script.setCreateAt(array.getJSONObject(i).optString("createdAt"));
-                data.add(script);
+                JSONObject jsonScript = new JSONObject(URLDecoder.decode(array.getJSONObject(i).optString("script_simpleInfo"), "utf-8"));
+                JSONObject arrayScript = jsonScript.getJSONObject("simple_data");
+                data.setUserId(user);
+                data.setName(URLDecoder.decode(arrayScript.optString("scriptName"), "utf-8"));
+                data.setTitle(URLDecoder.decode(arrayScript.optString("scriptTitle"), "utf-8"));
+                data.setIntroduce(URLDecoder.decode(arrayScript.optString("scriptIntroduce"), "utf-8"));
+                data.setType(URLDecoder.decode(arrayScript.optString("scriptType"), "utf-8"));
+                data.setNumber(arrayScript.optInt("scriptNumber"));
+
+                data.setImageAvatar("http://"+URLDecoder.decode(arrayScript.optString("scriptImageAvatar"), "utf-8"));
+                Log.i("avatar:",i+"|"+data.getImageAvatar());
+                data.setScriptBrowse(array.getJSONObject(i).optInt("script_browse"));
+                listData.add(data);
             }
-            setListData(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public List<PiaScript> getListData() {
+    public List<SimpleData> getListData() {
         return listData;
     }
 
-    private void setListData(List<PiaScript> listData) {
+    private void setListData(List<SimpleData> listData) {
         this.listData = listData;
     }
 }

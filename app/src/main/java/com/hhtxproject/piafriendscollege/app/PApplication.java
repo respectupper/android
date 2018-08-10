@@ -13,11 +13,20 @@ import org.json.JSONObject;
 public class PApplication extends Application {
     private JSONObject jsonData = null;
     private String telephone = "";
+    private int userId;
     private boolean isLogin = false;
     private SharedPreferences mSharedPreferences;
 
     public void setmSharedPreferences(SharedPreferences mSharedPreferences) {
         this.mSharedPreferences = mSharedPreferences;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public SharedPreferences getmSharedPreferences() {

@@ -13,6 +13,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hhtxproject.piafriendscollege.Entity.PiaScript;
 import com.hhtxproject.piafriendscollege.Entity.PiaVoice;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.R;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyHolder> {//implements OnBannerListener {
 
-    private List<PiaScript> listScript;
+    private List<SimpleData> listScript;
     private List<PiaVoice> listVoice;
     private String tag;
     class MyHolder extends RecyclerView.ViewHolder{
@@ -45,7 +46,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(Context context, List<PiaVoice> listData, List<PiaScript> listData2, String tag){
+    public RecyclerViewAdapter(Context context, List<PiaVoice> listData, List<SimpleData> listData2, String tag){
         this.listVoice = listData;
         this.listScript = listData2;
         this.tag = tag;
@@ -62,19 +63,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
         if ("voice".equals(tag)){
-            holder.iv_image.setImageURI(listVoice.get(position).getImageAvatar());
-            holder.tv_script_name.setText(listVoice.get(position).getPiaScript().getScriptName());
-            holder.tv_play_count.setText(listVoice.get(position).getPlayerCount()+"");
-            holder.tv_introduce.setText(listVoice.get(position).getPlayerIntroduce());
-            holder.tv_author.setText(listVoice.get(position).getPiaScript().getPiaUser().getUsername());
-            holder.tv_class.setText(listVoice.get(position).getPlayerClass());
+//            holder.iv_image.setImageURI(listVoice.get(position).getImageAvatar());
+//            holder.tv_script_name.setText(listVoice.get(position).getPiaScript().getScriptName());
+//            holder.tv_play_count.setText(listVoice.get(position).getPlayerCount()+"");
+//            holder.tv_introduce.setText(listVoice.get(position).getPlayerIntroduce());
+//            holder.tv_author.setText(listVoice.get(position).getPiaScript().getPiaUser().getUsername());
+//            holder.tv_class.setText(listVoice.get(position).getPlayerClass());
         }else if ("script".equals(tag)){
-            holder.iv_image.setImageURI(listScript.get(position).getScriptImgAvatar());
-            holder.tv_script_name.setText(listScript.get(position).getScriptName());
+            holder.iv_image.setImageURI(listScript.get(position).getImageAvatar());
+            holder.tv_script_name.setText(listScript.get(position).getName());
             holder.tv_play_count.setText(listScript.get(position).getScriptBrowse()+"");
-            holder.tv_introduce.setText(listScript.get(position).getScriptIntroduce());
-            holder.tv_author.setText(listScript.get(position).getPiaUser().getUsername());
-            holder.tv_class.setText(listScript.get(position).getScriptClass());
+            holder.tv_introduce.setText(listScript.get(position).getIntroduce());
+            holder.tv_author.setText(listScript.get(position).getUserId().getUsername());
+            holder.tv_class.setText(listScript.get(position).getType());
         }
     }
 

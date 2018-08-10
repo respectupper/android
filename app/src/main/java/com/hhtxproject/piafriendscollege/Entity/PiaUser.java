@@ -5,12 +5,22 @@ package com.hhtxproject.piafriendscollege.Entity;
  */
 
 public class PiaUser {
+
+    private int id;
     private String username;
     private String avatar;
     private String text;
     private int funcount;
     private int coin;
     private int followcount;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getFollowcount() {
         return followcount;

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.hhtxproject.piafriendscollege.Adapter.RecyclerViewAdapter;
 import com.hhtxproject.piafriendscollege.Entity.PiaScript;
+import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.Net.LoadData;
 import com.hhtxproject.piafriendscollege.R;
 import com.loopj.android.http.RequestParams;
@@ -37,7 +38,7 @@ public class RecommendFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-    private List<PiaScript> listData;
+    private List<SimpleData> listData;
     private RecyclerViewAdapter adapter;
 
     @Override
@@ -85,7 +86,7 @@ public class RecommendFragment extends Fragment {
             @Override
             public void run() {
                 RequestParams params = new RequestParams();
-                new LoadData(handler, "getScript_pia", params).getData().sendToTarget();
+                new LoadData(handler, "getScript_pia", params,200).getData().sendToTarget();
             }
         }).start();
 

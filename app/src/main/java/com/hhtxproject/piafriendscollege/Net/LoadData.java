@@ -16,15 +16,17 @@ public class LoadData {
     private Handler handler;
     private String servlet;
     private RequestParams params;
-    public LoadData(Handler handler,String servlet,RequestParams params){
+    private int successCode;
+    public LoadData(Handler handler,String servlet,RequestParams params,int successCode){
         this.handler = handler;
         this.servlet = servlet;
         this.params = params;
+        this.successCode = successCode;
     }
     public Message getData(){
         Message msg = Message.obtain(handler);
         msg.obj = HttpPost.linkHttpPost(servlet,params);
-        msg.what = 200;
+        msg.what = successCode;
         return msg;
     }
 }

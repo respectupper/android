@@ -93,7 +93,7 @@ public class MineFragment extends Fragment {
                 public void run() {
                     RequestParams params = new RequestParams();
                     params.add("pia_telephone",pia.getTelephone());
-                    new LoadData(handler,"getUser_pia",params).getData().sendToTarget();
+                    new LoadData(handler,"getUser_pia",params,200).getData().sendToTarget();
                 }
             }).start();
 //            RequestParams params = new RequestParams();
@@ -172,7 +172,7 @@ public class MineFragment extends Fragment {
                     RequestParams params = new RequestParams();
                     params.add("pia_telephone",pia.getTelephone());
                     Log.i("pia.getTelephone()", pia.getTelephone());
-                    new LoadData(handler,"getUser_pia",params).getData().sendToTarget();
+                    new LoadData(handler,"getUser_pia",params,200).getData().sendToTarget();
                 }
             }).start();
             llBlocktwo.setVisibility(View.VISIBLE);
