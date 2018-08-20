@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OtherActivity.SettingActivity" />
+        <activity android:name=".OtherActivity.SettingActivity"/>
         <activity android:name=".OtherActivity.UserinfoActivity" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
