@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
@@ -83,7 +83,7 @@
                     android:id="@+id/choice_script_up"
                     android:src="@mipmap/choicescript_up"
                     android:layout_width="wrap_content"
-                    android:layout_height="12dp"
+                    android:layout_height="10dp"
                     android:layout_gravity="center"/>
                 <RelativeLayout
                     android:layout_weight="1"
@@ -96,8 +96,9 @@
                         android:scrollbars="none">
                         <RadioGroup
                             android:id="@+id/radioGroup"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center">
                             <RadioButton
                                 android:id="@+id/radio1"
                                 style="@style/RadioButtonStyle" />
@@ -127,7 +128,7 @@
                     android:id="@+id/choice_script_down"
                     android:src="@mipmap/choicescript_down"
                     android:layout_width="wrap_content"
-                    android:layout_height="12dp"
+                    android:layout_height="10dp"
                     android:layout_gravity="center"/>
             </LinearLayout>
             <android.support.v4.widget.SwipeRefreshLayout

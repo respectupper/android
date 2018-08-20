@@ -97,7 +97,7 @@ public class ChoiceScriptActivity extends AppCompatActivity {
                 switch (radioGroup.getCheckedRadioButtonId()){
                     case R.id.radio1:
                         data.clear();
-                        START_POS_1 = 0;
+                        START_POS_1 = 20;
                         Sentimentdata();
                         csScriptAdapter.notifyDataSetChanged();
                         Toast.makeText(ChoiceScriptActivity.this,"已经刷新", Toast.LENGTH_SHORT).show();
@@ -181,7 +181,7 @@ public class ChoiceScriptActivity extends AppCompatActivity {
     }
 
     private void mRadioButtonImgSize() {
-        int q = dip2px(this, 60);
+        int q = dip2px(this, 50);
         //定义底部标签图片大小
         Drawable drawableFirst = getResources().getDrawable(R.drawable.radiobutton1);
         drawableFirst.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
@@ -189,19 +189,19 @@ public class ChoiceScriptActivity extends AppCompatActivity {
         Drawable drawableFirst1 = getResources().getDrawable(R.drawable.radiobutton2);
         drawableFirst1.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio2.setCompoundDrawables(null, drawableFirst1, null, null);
-        Drawable drawableFirst2 = getResources().getDrawable(R.drawable.radiobutton1);
+        Drawable drawableFirst2 = getResources().getDrawable(R.drawable.radiobutton3);
         drawableFirst2.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio3.setCompoundDrawables(null, drawableFirst2, null, null);
-        Drawable drawableFirst3 = getResources().getDrawable(R.drawable.radiobutton1);
+        Drawable drawableFirst3 = getResources().getDrawable(R.drawable.radiobutton4);
         drawableFirst3.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio4.setCompoundDrawables(null, drawableFirst3, null, null);
-        Drawable drawableFirst4 = getResources().getDrawable(R.drawable.radiobutton1);
+        Drawable drawableFirst4 = getResources().getDrawable(R.drawable.radiobutton5);
         drawableFirst4.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio5.setCompoundDrawables(null, drawableFirst4, null, null);
-        Drawable drawableFirst5 = getResources().getDrawable(R.drawable.radiobutton1);
+        Drawable drawableFirst5 = getResources().getDrawable(R.drawable.radiobutton6);
         drawableFirst5.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio6.setCompoundDrawables(null, drawableFirst5, null, null);
-        Drawable drawableFirst6 = getResources().getDrawable(R.drawable.radiobutton1);
+        Drawable drawableFirst6 = getResources().getDrawable(R.drawable.radiobutton7);
         drawableFirst6.setBounds(0, 0, q, q);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         radio7.setCompoundDrawables(null, drawableFirst6, null, null);
     }
