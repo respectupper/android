@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +23,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.hhtxproject.piafriendscollege.Adapter.CSScriptAdapter;
-import com.hhtxproject.piafriendscollege.Adapter.ChoiceScriptAdapter;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Tools.RecyclerViewUtil;
 
@@ -32,8 +31,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChoiceScriptActivity extends AppCompatActivity {
 
+public class RandomSrtActivity extends AppCompatActivity {
     @BindView(R.id.mode_return)
     ImageButton modeReturn;
     @BindView(R.id.spinner)
@@ -79,9 +78,9 @@ public class ChoiceScriptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choice_script);
+        setContentView(R.layout.activity_random_srt);
         ButterKnife.bind(this);
-        fullScreen(ChoiceScriptActivity.this);
+        fullScreen(RandomSrtActivity.this);
 //        addAdapter();
         addScriptAdapter();
         mRadioButtonImgSize();
@@ -89,6 +88,7 @@ public class ChoiceScriptActivity extends AppCompatActivity {
         initListener();
         addSwipeRefreshLayout();
     }
+
 
     private void addSwipeRefreshLayout() {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -100,7 +100,7 @@ public class ChoiceScriptActivity extends AppCompatActivity {
                         START_POS_1 = 20;
                         Sentimentdata();
                         csScriptAdapter.notifyDataSetChanged();
-                        Toast.makeText(ChoiceScriptActivity.this,"已经刷新", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this,"已经刷新", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio2:
                         data.clear();
@@ -161,19 +161,19 @@ public class ChoiceScriptActivity extends AppCompatActivity {
                         });
                         break;
                     case R.id.radio3:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio4:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio5:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio6:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio7:
-                        Toast.makeText(ChoiceScriptActivity.this, i + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RandomSrtActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -253,7 +253,7 @@ public class ChoiceScriptActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position, View view) {
 //                Toast.makeText(getApplicationContext(), "单击" + position, Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(ChoiceScriptActivity.this,ScriptDetailsActivity.class);
+                Intent i = new Intent(RandomSrtActivity.this,ScriptDetailsActivity.class);
                 i.putExtra("activity_name",data.get(position));
                 startActivity(i);
             }
