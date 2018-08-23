@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.hhtxproject.piafriendscollege.Login.service.CheckLogin;
+import com.hhtxproject.piafriendscollege.NavFragment.Login.service.CheckLogin;
 import com.hhtxproject.piafriendscollege.NavFragment.FindFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.GoFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.MineFragment;
@@ -96,9 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private void setData(){
 
         if (new CheckLogin(application.getmSharedPreferences()).cheak()){
-            application.setTelephone(application.getmSharedPreferences().getString("Telephone","NULL"));
             application.setLogin(true);
-            Log.i("true","True"+application.getTelephone());
         }else {
             Log.i("false","False");
         }

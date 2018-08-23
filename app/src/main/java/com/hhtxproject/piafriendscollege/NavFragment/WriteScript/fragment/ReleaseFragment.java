@@ -27,6 +27,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hhtxproject.piafriendscollege.Entity.ContentData;
 import com.hhtxproject.piafriendscollege.Entity.PeopleData;
+import com.hhtxproject.piafriendscollege.Entity.PiaScript;
 import com.hhtxproject.piafriendscollege.Entity.SimpleData;
 import com.hhtxproject.piafriendscollege.Net.LoadData;
 import com.hhtxproject.piafriendscollege.R;
@@ -108,7 +109,11 @@ public class ReleaseFragment extends Fragment {
                     simpleList.get(0).setImageAvatar((String) msg.obj);
                     break;
                 case ScriptUpLoadFinish:
+                    if("true".equals(msg.obj.toString())){
 
+                    }else {
+                        Toast.makeText(getContext(),"上传失败请重试",Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 default:
                     break;
@@ -138,7 +143,7 @@ public class ReleaseFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         setRecyclerview();
         getIntentData();
-        setIntentData();
+//        setIntentData();
         setRecyclerClickEvent();
         UpLoderData();
         initCosxml();
@@ -292,13 +297,13 @@ public class ReleaseFragment extends Fragment {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
                     upLoadImage(simpleList.get(0).getName()+"-"+df.format(day),simpleList.get(0).getImagePath());
                     RequestParams params = new RequestParams();
+                    params.add("pia_user_id", String.valueOf(new PApplication().getUserId()));
                     params.add("pia_release","0");
                     params.add("pia_simple_content",upLoadSimpleData());
                     params.add("pia_people_content",upLoadPeopleData());
                     params.add("pia_content_content",upLoadContentData());
-                    Log.w("TEST","go to there!!!");
-                    new LoadData(handler,"upLoadInfoScript_pia",params,ScriptUpLoadFinish).getData().sendToTarget();;
-                } catch (JSONException e) {
+                    new LoadData(handler,"/request/uploadScript",params,ScriptUpLoadFinish).getData().sendToTarget();;
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

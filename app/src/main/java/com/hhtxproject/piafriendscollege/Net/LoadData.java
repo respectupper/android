@@ -14,18 +14,18 @@ import com.loopj.android.http.RequestParams;
 public class LoadData {
 
     private Handler handler;
-    private String servlet;
     private RequestParams params;
     private int successCode;
-    public LoadData(Handler handler,String servlet,RequestParams params,int successCode){
+    private String path;
+    public LoadData(Handler handler,String path,RequestParams params,int successCode){
         this.handler = handler;
-        this.servlet = servlet;
         this.params = params;
+        this.path = path;
         this.successCode = successCode;
     }
     public Message getData(){
         Message msg = Message.obtain(handler);
-        msg.obj = HttpPost.linkHttpPost(servlet,params);
+        msg.obj = HttpPost.linkHttpPost(path,params);
         msg.what = successCode;
         return msg;
     }

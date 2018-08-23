@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.hhtxproject.piafriendscollege.Login.LoginActivity">
+    tools:context="com.hhtxproject.piafriendscollege.NavFragment.Login.LoginActivity">
 
     <EditText
         android:id="@+id/et_telephone"

@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 public class PApplication extends Application {
     private JSONObject jsonData = null;
-    private String telephone = "";
     private int userId;
     private boolean isLogin = false;
     private SharedPreferences mSharedPreferences;
@@ -47,14 +46,6 @@ public class PApplication extends Application {
 
     public void setJsonData(JSONObject jsonData) {
         this.jsonData = jsonData;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
     }
 
     public JSONObject getGlobalVariable() {

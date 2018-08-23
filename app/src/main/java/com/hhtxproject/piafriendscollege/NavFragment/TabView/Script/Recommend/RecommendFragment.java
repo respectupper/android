@@ -86,7 +86,7 @@ public class RecommendFragment extends Fragment {
             @Override
             public void run() {
                 RequestParams params = new RequestParams();
-                new LoadData(handler, "getScript_pia", params,200).getData().sendToTarget();
+                new LoadData(handler,"", params,200).getData().sendToTarget();
             }
         }).start();
 

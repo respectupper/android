@@ -1,4 +1,4 @@
-package com.hhtxproject.piafriendscollege.Login.service;
+package com.hhtxproject.piafriendscollege.NavFragment.Login.service;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -7,6 +7,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.hhtxproject.piafriendscollege.Net.HttpPost.HttpPost;
 import com.hhtxproject.piafriendscollege.app.PApplication;
 import com.loopj.android.http.RequestParams;
 
@@ -19,6 +20,7 @@ public class LoginPostThread extends Thread{
     private String telephone;
     private String password;
     private Activity context;
+    private String path;
     private PApplication app;
 
     Handler handler = new Handler(){
@@ -26,12 +28,9 @@ public class LoginPostThread extends Thread{
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 200) {  // 处理发送线程传回的消息
-                if (msg.obj.toString().equals("NO_SUCH_USER")) {
+                if ("false".equals(msg.obj)) {
                     Toast.makeText(context, "无用户", Toast.LENGTH_SHORT).show();
-                } else if (msg.obj.toString().equals("FAILED")) {
-                    Toast.makeText(context, "连接失败", Toast.LENGTH_SHORT).show();
                 } else{
-                    app.setTelephone(telephone);
                     app.setLogin(true);
                     sharePreference(telephone,password);
                     context.finish();
@@ -41,9 +40,10 @@ public class LoginPostThread extends Thread{
     };
 
 
-    public LoginPostThread(Activity context,String telephone,String password){
+    public LoginPostThread(Activity context,String path,String telephone,String password){
         this.telephone = telephone;
         this.password = password;
+        this.path = path;
         this.context = context;
         app = (PApplication) context.getApplicationContext();
     }
@@ -52,14 +52,10 @@ public class LoginPostThread extends Thread{
     public void run() {
         try{
             RequestParams params = new RequestParams();
-            params.add("pia_telephone",telephone);
-            params.add("pia_password",password);//传递键值对参数
+            params.add("telephone",telephone);
+            params.add("password",password);//传递键值对参数
 
-//            RequestParams params = new RequestParams();
-//            params.add("pia_telephone",telephone);
-//            params.add("pia_password",password);
-//            params.add("requestKey",new PApplication().getRequestKEY());
-            String tag = LoginService.send(params);
+            String tag = HttpPost.linkHttpPost(path,params);
             Message msg = handler.obtainMessage();
             msg.what = 200;
             msg.obj = tag;

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
+import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.BrowseFragment;
 import com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment.ReleaseFragment;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
@@ -37,7 +38,7 @@ public class BaseReleaseActivity extends AppCompatActivity {
 
     private void setInitViewpager() {
         fragments = new ArrayList<>();
-//        fragments.add(BrowseFragment.newInstance());
+        fragments.add(BrowseFragment.newInstance());
         fragments.add(ReleaseFragment.newInstance());
         FragmentManager manager = getSupportFragmentManager();
         adapter = new ViewPagerAdapter(manager, fragments);

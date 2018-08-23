@@ -6,16 +6,23 @@ package com.hhtxproject.piafriendscollege.Entity;
 
 public class PiaScript {
 
-    private int scriptId;
+    private Integer id;
+    private Integer userId;
     private String simpleData;
-    private int scriptBrowse;
+    private String peopleData;
+    private String contentData;
+    private char released;
+    private char toexamined;
+    private Integer browse;
+    private String updateAt;
+    private String createAt;
 
-    public int getScriptId() {
-        return scriptId;
+    public String getUpdateAt() {
+        return updateAt;
     }
 
-    public void setScriptId(int scriptId) {
-        this.scriptId = scriptId;
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
     }
 
     public String getSimpleData() {
@@ -26,11 +33,67 @@ public class PiaScript {
         this.simpleData = simpleData;
     }
 
-    public int getScriptBrowse() {
-        return scriptBrowse;
+    public Integer getId() {
+        return id;
     }
 
-    public void setScriptBrowse(int scriptBrowse) {
-        this.scriptBrowse = scriptBrowse;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getPeopleData() {
+        return peopleData;
+    }
+
+    public void setPeopleData(String peopleData) {
+        this.peopleData = peopleData;
+    }
+
+    public String getContentData() {
+        return contentData;
+    }
+
+    public void setContentData(String contentData) {
+        this.contentData = contentData;
+    }
+
+    public char getReleased() {
+        return released;
+    }
+
+    public void setReleased(char released) {
+        this.released = released;
+    }
+
+    public char getToexamined() {
+        return toexamined;
+    }
+
+    public void setToexamined(char toexamined) {
+        this.toexamined = toexamined;
+    }
+
+    public Integer getBrowse() {
+        return browse;
+    }
+
+    public void setBrowse(Integer browse) {
+        this.browse = browse;
+    }
+
+    public String getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
     }
 }

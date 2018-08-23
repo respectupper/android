@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/writebg"
+    tools:context="com.hhtxproject.piafriendscollege.PlayRoom.ShowContent.ShowFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/xiejuben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#FFFFFF"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/exit"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textColor="#FFFFFF"
+                android:text="退出"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/l_my_info"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/my_people"
+                    android:background="@mipmap/gm1"
+                    android:layout_width="80dp"
+                    android:layout_height="144dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/my_sex"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:paddingBottom="30dp"
+                android:layout_below="@+id/l_my_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide
+                    android:id="@+id/show_people"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="200dp"
+                    android:layout_height="360dp" />
+                <RelativeLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp">
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp">
+                        <ImageView
+                            android:id="@+id/tishideng"
+                            android:layout_gravity="end"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <Button
+                            android:id="@+id/show_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:background="#80FFFFFF"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="65dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide
+                            android:id="@+id/viewpager"
+                            android:layout_weight="1"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </com.hhtxproject.piafriendscollege.Tools.ViewPagerSlide>
+                        <TextView
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="end"
+                            android:textColor="#FFFFFF"
+                            android:text="完成"
+                            android:layout_marginRight="20dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,10 +1,12 @@
 package com.hhtxproject.piafriendscollege.NavFragment.WriteScript.fragment;
 
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
+import com.hhtxproject.piafriendscollege.Adapter.ViewPagerAdapter;
 import com.hhtxproject.piafriendscollege.Entity.PeopleData;
 import com.hhtxproject.piafriendscollege.Entity.SimpleData;
+import com.hhtxproject.piafriendscollege.Entity.event.JumpEvent;
 import com.hhtxproject.piafriendscollege.R;
 import com.hhtxproject.piafriendscollege.Rx.RxBus;
 
@@ -327,7 +330,7 @@ public class PeopleFragment extends Fragment {
                     JumpEvent event = new JumpEvent(2);
                     RxBus.getDefault().post(event);
                 }else {
-                    Toast.makeText(getContext(),"请点右上角的保存",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"请点右上角的保存", Toast.LENGTH_SHORT).show();
                 }
             }
         });

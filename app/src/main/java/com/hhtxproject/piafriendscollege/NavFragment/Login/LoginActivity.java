@@ -1,4 +1,4 @@
-package com.hhtxproject.piafriendscollege.Login;
+package com.hhtxproject.piafriendscollege.NavFragment.Login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.hhtxproject.piafriendscollege.Login.service.LoginPostThread;
+import com.hhtxproject.piafriendscollege.NavFragment.Login.service.LoginPostThread;
 import com.hhtxproject.piafriendscollege.Net.HttpPost.NetCheck;
 import com.hhtxproject.piafriendscollege.R;
 
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "请输入账号", Toast.LENGTH_SHORT).show();
                     } else {
                         //登录检测加跳转
-                        new LoginPostThread(LoginActivity.this, telephone, password).start();
+                        new LoginPostThread(LoginActivity.this,"/resquest/login", telephone, password).start();
                     }
                 }else {
 

@@ -91,7 +91,7 @@ public class RecommendFragment extends Fragment {
             @Override
             public void run() {
                 RequestParams params = new RequestParams();
-                new LoadData(handler, "getVoice_pia", params,200).getData().sendToTarget();
+                new LoadData(handler,"", params,200).getData().sendToTarget();
             }
         }).start();
     }
@@ -112,7 +112,7 @@ public class RecommendFragment extends Fragment {
                     @Override
                     public void run() {
                         RequestParams params = new RequestParams();
-                        new LoadData(handler, "getVoice_pia", params,200).getData().sendToTarget();
+                        new LoadData(handler,"", params,200).getData().sendToTarget();
                     }
                 }).start();
             }

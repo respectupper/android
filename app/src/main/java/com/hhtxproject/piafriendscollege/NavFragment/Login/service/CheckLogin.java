@@ -1,4 +1,4 @@
-package com.hhtxproject.piafriendscollege.Login.service;
+package com.hhtxproject.piafriendscollege.NavFragment.Login.service;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,9 +21,7 @@ public class CheckLogin {
         if (!"NULL".equals(mSharedPreferences.getString("Telephone","NULL"))&&!"NULL".equals(mSharedPreferences.getString("Password","NULL"))){
             Log.i("shareInfo1",mSharedPreferences.getString("Telephone","NULL")+","+mSharedPreferences.getString("Password","NULL"));
             return true;
-        }else {
-            Log.i("shareInfo2",mSharedPreferences.getString("Telephone","NULL")+","+mSharedPreferences.getString("Password","NULL"));
-        };
+        }
         return false;
     }
 }

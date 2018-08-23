@@ -17,20 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Base.MainActivity">
+        </activity>
+        <activity android:name=".OtherActivity.SettingActivity" />
+        <activity android:name=".OtherActivity.UserinfoActivity" />
+        <activity android:name=".NavFragment.Login.LoginActivity" />
+        <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
+        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity" >
+
+        </activity>
+        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity" />
+        <activity android:name=".PlayRoom.BaseActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OtherActivity.SettingActivity" />
-        <activity android:name=".OtherActivity.UserinfoActivity" />
-        <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
-        <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
-        <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
-        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity"></activity>
-        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity"></activity>
     </application>
 
 </manifest>

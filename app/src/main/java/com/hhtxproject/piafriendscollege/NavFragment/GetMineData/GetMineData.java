@@ -1,7 +1,10 @@
 package com.hhtxproject.piafriendscollege.NavFragment.GetMineData;
 
+import android.util.Log;
+
 import com.hhtxproject.piafriendscollege.Entity.PiaUser;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URLDecoder;
@@ -14,17 +17,16 @@ public class GetMineData {
 
 
     private PiaUser user;
-    public GetMineData (String msg, String tele){
+    public GetMineData (String msg){
         try {
             JSONObject json = new JSONObject(msg);
-            JSONObject object = json.getJSONObject(tele);
             user = new PiaUser();
-            user.setUsername(URLDecoder.decode(object.optString("pia_username"), "utf-8"));
-            user.setText(URLDecoder.decode(object.optString("pia_text"), "utf-8"));
-            user.setFuncount(object.optInt("pia_funcount"));
-            user.setFollowcount(object.optInt("pia_followcount"));
-            user.setCoin(object.optInt("pia_coin"));
-            user.setAvatar(object.optString("pia_avatar"));
+            user.setUsername(URLDecoder.decode(json.optString("piaUsername"), "utf-8"));
+            user.setText(URLDecoder.decode(json.optString("piaText"), "utf-8"));
+            user.setFuncount(json.optInt("piaFuns"));
+            user.setFollowcount(json.optInt("piaFollows"));
+            user.setCoin(json.optInt("piaCoin"));
+            user.setAvatar(json.optString("piaAvatar"));
             setUser(user);
         } catch (Exception e) {
             e.printStackTrace();

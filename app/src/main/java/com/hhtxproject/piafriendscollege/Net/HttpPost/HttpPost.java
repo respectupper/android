@@ -11,18 +11,12 @@ import com.loopj.android.http.SyncHttpClient;
  */
 
 public class HttpPost {
-    // 服务器地址
-    private static String SERVER = "http://192.168.0.81:8080";
-    // 项目地址
-    private static String PROJECT = "/PiafriendsCollege/";
 
     private static String responseMsg = "FAILED";
 
     // 通过 POST 方式获取HTTP服务器数据
-    public static String linkHttpPost(String servlet, RequestParams params) {
-        String baseURL = SERVER + PROJECT + servlet;
-        Log.i("url", "baseURL = " +baseURL);
-
+    public static String linkHttpPost(String path,RequestParams params) {
+        String baseURL = "http://192.168.0.119:8080"+path;//SERVER + PROJECT + servlet;
         SyncHttpClient client = new SyncHttpClient();
         client.post(baseURL, params, new AsyncHttpResponseHandler() {
             @Override
@@ -41,8 +35,6 @@ public class HttpPost {
                 Log.i("code", "1 HttpPost: responseCode = " + i+"");
             }
         });
-//
-//        Log.i("tag", "RegisterHttpPost: responseMsg = " + responseMsg);
         return responseMsg;
     }
 }

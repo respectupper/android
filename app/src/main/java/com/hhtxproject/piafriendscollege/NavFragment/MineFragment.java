@@ -1,7 +1,9 @@
 package com.hhtxproject.piafriendscollege.NavFragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +25,8 @@ import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.hhtxproject.piafriendscollege.Entity.PiaUser;
-import com.hhtxproject.piafriendscollege.Login.LoginActivity;
+import com.hhtxproject.piafriendscollege.NavFragment.Login.LoginActivity;
+import com.hhtxproject.piafriendscollege.NavFragment.Login.service.CheckLogin;
 import com.hhtxproject.piafriendscollege.NavFragment.GetMineData.GetMineData;
 import com.hhtxproject.piafriendscollege.Net.LoadData;
 import com.hhtxproject.piafriendscollege.OtherActivity.SettingActivity;
@@ -92,13 +95,14 @@ public class MineFragment extends Fragment {
                 @Override
                 public void run() {
                     RequestParams params = new RequestParams();
-                    params.add("pia_telephone",pia.getTelephone());
-                    new LoadData(handler,"getUser_pia",params,200).getData().sendToTarget();
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginUser", Context.MODE_PRIVATE);
+                    if (new CheckLogin(sharedPreferences).cheak()){
+                        params.add("telephone",sharedPreferences.getString("Telephone","NULL"));
+                        params.add("password",sharedPreferences.getString("Password","NULL"));
+                        new LoadData(handler,"/resquest/getData",params,200).getData().sendToTarget();
+                    }
                 }
             }).start();
-//            RequestParams params = new RequestParams();
-//            params.add("pia_telephone",pia.getTelephone());
-//            params.add("requestKey",new PApplication().getRequestKEY());
         }
         Log.i("tag", "setHasOptionsMenu开启");
     }
@@ -170,12 +174,16 @@ public class MineFragment extends Fragment {
                 @Override
                 public void run() {
                     RequestParams params = new RequestParams();
-                    params.add("pia_telephone",pia.getTelephone());
-                    Log.i("pia.getTelephone()", pia.getTelephone());
-                    new LoadData(handler,"getUser_pia",params,200).getData().sendToTarget();
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginUser", Context.MODE_PRIVATE);
+                    if (new CheckLogin(sharedPreferences).cheak()){
+                        params.add("telephone",sharedPreferences.getString("Telephone","NULL"));
+                        params.add("password",sharedPreferences.getString("Password","NULL"));
+                        new LoadData(handler,"/resquest/getData",params,200).getData().sendToTarget();
+                    }
                 }
             }).start();
             llBlocktwo.setVisibility(View.VISIBLE);
+            setClick();
         }
     }
 
@@ -232,7 +240,7 @@ public class MineFragment extends Fragment {
         if ("FAILED".equals(msg)){
             Toast.makeText(getContext(),"登录失败",Toast.LENGTH_SHORT).show();
         } else{
-            PiaUser user = new GetMineData(msg,pia.getTelephone()).getUser();
+            PiaUser user = new GetMineData(msg).getUser();
             tvMineUsername.setText(user.getUsername());
             tvMineContent.setText(user.getText());
             tvMineFuns.setText(user.getFuncount()+"");
