@@ -93,7 +93,8 @@ public class ModeActivity extends AppCompatActivity {
                         startActivity(new Intent(ModeActivity.this,ChoiceScriptActivity.class));
                         break;
                     case 1:
-                        //双人模式
+                        //随机模式
+                        startActivity(new Intent(ModeActivity.this,RandomSrtActivity.class));
                         break;
                     case 2:
                         //多人模式

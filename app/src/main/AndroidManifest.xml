@@ -24,6 +24,7 @@
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
+<<<<<<< HEAD
         <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity" >
 
         </activity>
@@ -36,6 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.RandomSrtActivity"></activity>
+>>>>>>> 683c1e74f23be91faa7233ee3169f7b8e0fb51f5
     </application>
 
 </manifest>
