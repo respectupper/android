@@ -23,14 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OtherActivity.SettingActivity"/>
+        <activity android:name=".OtherActivity.SettingActivity" />
         <activity android:name=".OtherActivity.UserinfoActivity" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".NavFragment.WriteScript.BaseWriteActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ModeActivity" />
         <activity android:name=".NavFragment.ModeAndRoom.ChoiceScriptActivity" />
-        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity"></activity>
-        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity"></activity>
+        <activity android:name=".NavFragment.WriteScript.BaseReleaseActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.ScriptDetailsActivity" />
+        <activity android:name=".NavFragment.ModeAndRoom.RandomSrtActivity"></activity>
     </application>
 
 </manifest>
